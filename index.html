@@ -18,10 +18,10 @@
     <link rel="stylesheet" href="assets/css/Navigation-Clean.css">
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="assets/css/fontawesome/all.css">
-<script type="text/javascript" src="//api.laut.fm/js_tools/lautfm_js_tools.0.10.0.js.min.js" ></script>
 </head>
 
-<body><nav class="broadcastbar fixed-top">
+<body>
+<nav class="broadcastbar fixed-top">
     <div class="container">
         <div class="row">
 
@@ -40,14 +40,67 @@
         </div>
     </div>
 </nav>
+
+<div class="container" id="last_songs" style="margin-top: 5rem;">
+    <div class="row">
+        <div class="col-4">
+            <div class="last_song d-flex z-depth-1-half">
+                <span class="track_nr">1</span>
+                <div class="song_wrapper">
+                    <p class="last_text last_artist">
+                        Martin Tungevaag
+                    </p>
+                    <p class="last_text last_title">
+                        Springfield (Video Edit) [feat. ItaloBrothers]
+                    </p>
+                </div>
+                <div class="last_btn">
+                    <i class="fas fa-ellipsis-h"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="last_song d-flex z-depth-1-half">
+                <span class="track_nr">2</span>
+                <div class="song_wrapper">
+                    <p class="last_text last_artist">
+                        Martin Tungevaag
+                    </p>
+                    <p class="last_text last_title">
+                        Springfield (Video Edit) [feat. ItaloBrothers]
+                    </p>
+                </div>
+                <div class="last_btn">
+                    <i class="fas fa-ellipsis-h"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="last_song d-flex z-depth-1-half">
+                <span class="track_nr">3</span>
+                <div class="song_wrapper">
+                    <p class="last_text last_artist">
+                        Martin Tungevaag
+                    </p>
+                    <p class="last_text last_title">
+                        Springfield (Video Edit) [feat. ItaloBrothers]
+                    </p>
+                </div>
+                <div class="last_btn">
+                    <i class="fas fa-ellipsis-h"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <audio class="live-player" id="audio"></audio>
 
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/js/lfmplayer.js"></script>
-    <script src="assets/js/mdb/mdb.js"></script>
-    <script src="assets/js/fontawesome/all.js"></script>
-
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="assets/js/lfmplayer.js"></script>
+<script src="assets/js/mdb/mdb.js"></script>
+<script src="assets/js/fontawesome/all.js"></script>
 <script>
     let color = $_GET('color');
     let root = document.documentElement;
@@ -55,10 +108,6 @@
 
     let station = $_GET('station');
     let sender = station.toUpperCase();
-    laut.fm.station(station)
-        .info({container:'station', template:'station_template'})
-        .current_song({container:'api_lfm_current_song1', template:'current_song_template1'}, true)
-        .info({container:'api_lfm_display_name', template:'display_name_template'});
 
 </script>
 

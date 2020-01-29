@@ -1,3 +1,5 @@
+@import "last_songs.min.css";
+
 :root {
   --main-color: #1ed9b4;
 }
@@ -48,3 +50,8 @@ body {
   background: var(--main-color);
 }
 
+#last_songs {
+  margin-top: 5rem;
+}
+
+#last_songs
