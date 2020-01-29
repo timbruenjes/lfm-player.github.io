@@ -1,5 +1,5 @@
-@import "last_songs.min.css";
 @import "fonts.min.css";
+@import "last_songs.min.css";
 
 :root {
   --main-color: #1ed9b4;
@@ -55,9 +55,3 @@ h1,h2,h3,h4,h5,h6 {
 .playbtn {
   background: var(--main-color);
 }
-
-#last_songs {
-  margin-top: 5rem;
-}
-
-#last_songs

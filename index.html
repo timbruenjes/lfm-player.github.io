@@ -43,22 +43,12 @@
 
 <div class="container" id="last_songs" style="margin-top: 5rem;">
     <div class="row">
-        <div class="col-md-4">
-            <div class="last_song d-flex z-depth-1-half">
-                <span class="track_nr">{{track_nr}}</span>
-                <div class="song_wrapper">
-                    <p class="last_text last_artist">
-                        {{artist}}
-                    </p>
-                    <p class="last_text last_title">
-                        {{title}}
-                    </p>
-                </div>
-                <div class="last_btn">
-                    <i class="fas fa-ellipsis-h"></i>
-                </div>
-            </div>
+        <div class="col-12 mt-4">
+            <h1>Letzte Songs:</h1>
         </div>
+    </div>
+    <div id="song_row" class="row">
+
     </div>
 </div>
 
@@ -78,9 +68,8 @@
     let station = $_GET('station');
     let sender = station.toUpperCase();
 
-    $(document).ready(async function () {
-        let test = await getLautFmData("simliveradio");
-        console.log(test);
+    $(document).ready(function () {
+        load_last_songs_fully("simliveradio");
     });
 </script>
 

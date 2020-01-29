@@ -9,7 +9,6 @@
   min-height: 55px;
   padding: 8px 16px 8px 24px;
   margin: 4px;
-  background: white;
 }
 #last_songs .last_song .track_nr {
   min-width: 32px;
@@ -19,8 +18,7 @@
   margin-left: 0 !important;
   display: inline-block !important;
   visibility: visible !important;
-  font-weight: 600;
-  font-family: "Work Sans", sans-serif;
+  font-weight: 700;
 }
 #last_songs .last_song .song_wrapper {
   flex-grow: 1;
@@ -37,10 +35,9 @@
 }
 #last_songs .last_song .song_wrapper .last_text.last_artist {
   font-size: 1rem;
-  font-weight: bold;
-  font-family: "Work Sans", sans-serif;
   line-height: 1.25rem;
   margin: 0 0 2px;
+  font-weight: 700;
 }
 #last_songs .last_song .song_wrapper .last_text.last_title {
   font-size: 0.875rem;
