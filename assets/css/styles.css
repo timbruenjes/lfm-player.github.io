@@ -12,6 +12,13 @@ h1,h2,h3,h4,h5,h6 {
   font-family: "Work Sans", sans-serif;
 }
 
+.work-sans {
+  font-family: "Work Sans", sans-serif !important;
+}
+
+.roboto {
+  font-family: "Roboto", sans-serif !important;
+}
 #nowplaying {
   vertical-align: middle;
   align-content: center;

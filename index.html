@@ -43,52 +43,15 @@
 
 <div class="container" id="last_songs" style="margin-top: 5rem;">
     <div class="row">
-        <div class="col-12">
-            <h3 class="mt-0 font-weight-bold">Die letzten Songs:</h3>
-        </div>
-    </div>
-    <div class="row">
         <div class="col-md-4">
             <div class="last_song d-flex z-depth-1-half">
-                <span class="track_nr">1</span>
+                <span class="track_nr">{{track_nr}}</span>
                 <div class="song_wrapper">
                     <p class="last_text last_artist">
-                        Martin Tungevaag
+                        {{artist}}
                     </p>
                     <p class="last_text last_title">
-                        Springfield (Video Edit) [feat. ItaloBrothers]
-                    </p>
-                </div>
-                <div class="last_btn">
-                    <i class="fas fa-ellipsis-h"></i>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="last_song d-flex z-depth-1-half">
-                <span class="track_nr">2</span>
-                <div class="song_wrapper">
-                    <p class="last_text last_artist">
-                        Martin Tungevaag
-                    </p>
-                    <p class="last_text last_title">
-                        Springfield (Video Edit) [feat. ItaloBrothers]
-                    </p>
-                </div>
-                <div class="last_btn">
-                    <i class="fas fa-ellipsis-h"></i>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="last_song d-flex z-depth-1-half">
-                <span class="track_nr">3</span>
-                <div class="song_wrapper">
-                    <p class="last_text last_artist">
-                        Martin Tungevaag
-                    </p>
-                    <p class="last_text last_title">
-                        Springfield (Video Edit) [feat. ItaloBrothers]
+                        {{title}}
                     </p>
                 </div>
                 <div class="last_btn">
@@ -103,9 +66,10 @@
 
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-<script src="assets/js/lfmplayer.js"></script>
 <script src="assets/js/mdb/mdb.js"></script>
 <script src="assets/js/fontawesome/all.js"></script>
+<script src="assets/js/lfmplayer.js"></script>
+<script src="assets/js/tracklist.js"></script>
 <script>
     let color = $_GET('color');
     let root = document.documentElement;
@@ -114,8 +78,29 @@
     let station = $_GET('station');
     let sender = station.toUpperCase();
 
+    $(document).ready(async function () {
+        let test = await getLautFmData("simliveradio");
+        console.log(test);
+    });
 </script>
 
+<script type="text/template" id="song_detailed">
+    <div class="col-md-4">
+        <div class="last_song d-flex z-depth-1-half">
+            <span class="track_nr">{{track_nr}}</span>
+            <div class="song_wrapper">
+                <p class="last_text last_artist">
+                    {{artist}}
+                </p>
+                <p class="last_text last_title">
+                    {{title}}
+                </p>
+            </div>
+            <div class="last_btn">
+                <i class="fas fa-ellipsis-h"></i>
+            </div>
+        </div>
+    </div>
+</script>
 </body>
-
 </html>
