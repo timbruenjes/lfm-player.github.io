@@ -36,6 +36,8 @@
 }
 #last_songs .last_song .song_wrapper .last_text.last_artist {
   font-size: 1rem;
+  font-weight: bold;
+  font-family: "Work Sans", sans-serif;
   line-height: 1.25rem;
   margin: 0 0 2px;
 }
