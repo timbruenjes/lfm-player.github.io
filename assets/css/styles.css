@@ -6,6 +6,10 @@
 
 body {
   background: #fafafc;
+  font-family: "Roboto", sans-serif;
+}
+h1,h2,h3,h4,h5,h6 {
+  font-family: "Work Sans", sans-serif;
 }
 
 #nowplaying {
@@ -26,7 +30,7 @@ body {
 .broadcastbar {
   padding: 15px 0;
   height: 70px;
-  background: #1d2133;
+  background: #000a28;
   color: white;
 }
 
