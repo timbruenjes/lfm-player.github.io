@@ -7,7 +7,8 @@
 
 body {
   background: #e8e8e8;
-  font-family: "Roboto", sans-serif;
+  font-family: "Roboto", sans-serif !important;
+  font-weight: 400;
 }
 h1,h2,h3,h4,h5,h6 {
   font-family: "Work Sans", sans-serif;
@@ -62,4 +63,18 @@ h1,h2,h3,h4,h5,h6 {
 
 .playbtn {
   background: var(--main-color);
+}
+
+.station_info_container{
+		min-height: 100px;
+}
+
+.current_show_container{
+	background: white;
+	border-radius: 2px;
+	padding: 10px;
+}
+
+#show_start:before {
+	content: "Seit: ";
 }
