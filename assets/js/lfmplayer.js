@@ -17,7 +17,7 @@ function getSong(station_name) {
     $.getJSON("https://api.laut.fm/station/" + station_name + "/current_song", function (current) {
         if (song_str !== (current.title + " " + current.artist.name)) {
             song_str = current.title + " " + current.artist.name;
-            $("#api_lfm_current_song1").html(current.title + " &mdash; " + current.artist.name);
+            $("#api_lfm_current_song1").html(current.artist.name + " mit: " + current.title);
         }
     })
 }
