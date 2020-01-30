@@ -36,6 +36,12 @@ function getShowInformation(station_name) {
     })
 }
 
+function getStationInformation(station_name) {
+    $.getJSON("https://api.laut.fm/station/" + station, function (data) {
+        $("#station_logo").attr('src', data.images.station);
+    })
+}
+
 function getWidth() {
     let wrapper = $("#nowplaying").width()
     let playing = $("#api_lfm_display_name").width() + $("#nowplaying span").width();
