@@ -14,7 +14,6 @@
     <link rel="stylesheet" href="assets/css/mdb/jquery.zmd.hierarchical-display.min.css">
     <link rel="stylesheet" href="assets/css/mdb/mdb.css">
     <link rel="stylesheet" href="assets/css/mdb/rating.min.css">
-    <link rel="stylesheet" href="assets/css/mdb/style.css">
     <link rel="stylesheet" href="assets/css/Navigation-Clean.css">
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="assets/css/fontawesome/all.css">
@@ -32,8 +31,6 @@
 
             <div class="col-md-11" id="nowplaying">
                 <div id="api_lfm_display_name"></div>&nbsp;spielt:&nbsp;<div id="api_lfm_current_song1"></div>
-                <script type="text/html" id="display_name_template" charset="utf-8"><%= this.display_name %></script>
-                <script type="text/html" id="current_song_template1" charset="utf-8"><%= this.artist.name %> mit <%= this.title %></script>
             </div>
 
 
@@ -67,9 +64,22 @@
 
     let station = $_GET('station');
     let sender = station.toUpperCase();
+    let last_song_data_cache;
+    let song_str;
+
+    function cycle(){
+        setTimeout(function () {
+            load_last_song(station);
+            getSong(station);
+            cycle();
+        }, 2000);
+    }
 
     $(document).ready(function () {
-        load_last_songs_fully("simliveradio");
+        load_last_songs_fully(station);
+        $("#api_lfm_display_name").text(sender);
+        getSong(station);
+        cycle();
     });
 </script>
 

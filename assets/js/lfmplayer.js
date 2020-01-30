@@ -13,6 +13,15 @@ function $_GET(param) {
     return vars;
 }
 
+function getSong(station_name) {
+    $.getJSON("https://api.laut.fm/station/" + station_name + "/current_song", function (current) {
+        if (song_str !== (current.title + " " + current.artist.name)) {
+            song_str = current.title + " " + current.artist.name;
+            $("#api_lfm_current_song1").html(current.title + " &mdash; " + current.artist.name);
+        }
+    })
+}
+
 $(
     function () {
         let aud = $('audio')[0];
@@ -21,13 +30,12 @@ $(
         $('.playbtn').on('click', function () {
             if (aud.paused) {
                 aud.play();
-                $('.play-pause').removeClass('fa-play');
-                $('.play-pause').addClass('fa-stop');
+                $('.play-pause').removeClass('fa-play').addClass('fa-stop');
             } else {
                 aud.pause();
-                $('.play-pause').removeClass('fa-stop');
-                $('.play-pause').addClass('fa-play');
+                $('.play-pause').removeClass('fa-stop').addClass('fa-play');
             }
 
         })
-    })
+    }
+);
