@@ -1,10 +1,41 @@
 function appendTemplate(append_selector, track_nr, artist, title) {
-    $(append_selector).append($("#song_detailed").html().replace("{{track_nr}}", track_nr).replace("{{artist}}", artist).replace("{{title}}", title));
+    let appended = $(append_selector).append(
+        $("#song_detailed").html()
+            .replace("{{track_nr}}", track_nr)
+            .replace("{{artist}}", artist)
+            .replace("{{title}}", title)
+    );
+    appended.find('[title*="{{artist}}"]').each(function () {
+        $(this).attr("title", artist)
+    });
+    appended.find('[data-content*="{{title}}"]').each(function () {
+        $(this).attr("data-content", title)
+    })
 }
 
 function prependTemplate(prepend_selector, track_nr, artist, title) {
-    $(prepend_selector).prepend($("#song_detailed").html().replace("{{track_nr}}", track_nr).replace("{{artist}}", artist).replace("{{title}}", title));
+    let prepended = $(prepend_selector).prepend(
+        $("#song_detailed").html()
+            .replace("{{track_nr}}", track_nr)
+            .replace("{{artist}}", artist)
+            .replace("{{title}}", title)
+    );
+    prepended.find('[title*="{{artist}}"]').each(function () {
+        $(this).attr("title", artist)
+    });
+    prepended.find('[data-content*="{{title}}"]').each(function () {
+        $(this).attr("data-content", title)
+    })
 }
+
+function getItunesUrl(song, artist, german) {
+    let url = "https://itunes.apple.com/search?term=" + encodeURIComponent(artist) + "+" + encodeURIComponent(song) + "&entity=album&entity=musicArtist&entity=musicTrack&limit=1";
+    if (german) {
+        url = url + "&country=de"
+    }
+    return url;
+}
+
 
 function load_last_songs_fully(station_name) {
     $.getJSON("https://api.laut.fm/station/" + station_name + "/last_songs", function (full_data) {

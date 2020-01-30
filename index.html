@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="de">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
@@ -23,14 +22,11 @@
 <nav class="broadcastbar fixed-top">
     <div class="container">
         <div class="row">
-
-            <div class="col-md-1">
+            <div class="col-md-1 d-flex d-md-block justify-content-center mb-2 mb-md-0">
                 <button class="player-button playbtn"><i class="fas play-pause fa-play"></i></button>
             </div>
-
-
-            <div class="col-md-11" id="nowplaying">
-                <div id="api_lfm_display_name"></div>&nbsp;spielt:&nbsp;<div id="api_lfm_current_song1"></div>
+            <div class="col-md-11 d-flex align-items-center" id="nowplaying">
+                <div class="d-inline-block"><span id="api_lfm_display_name"></span>&nbsp;spielt:&nbsp;</div><div id="api_lfm_current_song1"></div>
             </div>
 
 
@@ -38,23 +34,23 @@
     </div>
 </nav>
 
-<div class="container" id="last_songs" style="margin-top: 5rem;">
+<div class="container mb-4" id="last_songs" style="margin-top: 5rem;">
     <div class="row">
-        <div class="col-12 mt-4">
+        <div class="col-12 mt-5 mt-md-4">
             <h1>Letzte Songs:</h1>
         </div>
     </div>
-    <div id="song_row" class="row">
-
-    </div>
+    <div id="song_row" class="row"></div>
 </div>
 
 <audio class="live-player" id="audio"></audio>
 
 <script src="assets/js/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 <script src="assets/js/mdb/mdb.js"></script>
 <script src="assets/js/fontawesome/all.js"></script>
+<script src="assets/js/jquery.khan-shatyr.js"></script>
 <script src="assets/js/lfmplayer.js"></script>
 <script src="assets/js/tracklist.js"></script>
 <script>
@@ -66,10 +62,12 @@
     let sender = station.toUpperCase();
     let last_song_data_cache;
     let song_str;
-
     function cycle(){
         setTimeout(function () {
             load_last_song(station);
+            $('[data-toggle="popover"]').popover({
+                trigger: 'focus'
+            })
             getSong(station);
             cycle();
         }, 2000);
@@ -79,11 +77,35 @@
         load_last_songs_fully(station);
         $("#api_lfm_display_name").text(sender);
         getSong(station);
+        getWidth();
+        $('[data-toggle="popover"]').popover()
+        $("#api_lfm_current_song1").khanShatyr();
         cycle();
+    }).ready(function () {
     });
 </script>
 
 <script type="text/template" id="song_detailed">
+    <div class="col-md-4">
+        <div class="last_song d-flex z-depth-1-half">
+            <span class="track_nr">{{track_nr}}</span>
+            <div class="song_wrapper">
+                <p class="last_text last_artist">
+                    {{artist}}
+                </p>
+                <p class="last_text last_title">
+                    {{title}}
+                </p>
+            </div>
+            <div class="last_btn">
+                <a tabindex="0" role="button" data-toggle="popover" data-trigger="focus" title="{{artist}}" data-content="{{title}}">
+                    <i class="fas fa-ellipsis-h"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</script>
+<script type="text/template" id="song_detailed_cover">
     <div class="col-md-4">
         <div class="last_song d-flex z-depth-1-half">
             <span class="track_nr">{{track_nr}}</span>

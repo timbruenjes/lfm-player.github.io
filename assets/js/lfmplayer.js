@@ -22,6 +22,12 @@ function getSong(station_name) {
     })
 }
 
+function getWidth() {
+    let wrapper = $("#nowplaying").width()
+    let playing = $("#api_lfm_display_name").width() + $("#nowplaying span").width();
+    $("#api_lfm_current_song1").width(wrapper - playing);
+}
+
 $(
     function () {
         let aud = $('audio')[0];
