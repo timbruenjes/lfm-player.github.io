@@ -50,8 +50,6 @@ h1,h2,h3,h4,h5,h6 {
   color: white;
   height: 40px;
   width: 40px;
-  max-height: 40px !important;
-  max-width: 40px !important;
   border-radius: 100%;
   font-size: 1.05em;
   text-align: center;
@@ -59,6 +57,14 @@ h1,h2,h3,h4,h5,h6 {
   align-content: center;
   vertical-align: middle;
 
+}
+
+@media (max-width: 786px) {
+	.player-button {
+		width: 55px;
+		height: 55px;
+		font-size: 1.3em;
+	}
 }
 
 .playbtn {
