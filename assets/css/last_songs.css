@@ -9,6 +9,8 @@
   min-height: 55px;
   padding: 8px 16px 8px 24px;
   margin: 4px;
+  background-color: #fff;
+  border-radius: 3px;
 }
 #last_songs .last_song .track_nr {
   min-width: 32px;
