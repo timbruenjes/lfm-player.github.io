@@ -33,8 +33,24 @@
         </div>
     </div>
 </nav>
+<!--Station Infos-->
+<div class="container mb-4" style="margin-top: 5rem;">
+	<div class="row">
+		<div class="col-md-6 mt-5 mt-md-4 station_info_container">
+		
+		</div>
+		<div class="col-md-6 mt-5 mt-md-4 station_info_container">
+			<div class="current_show_container d-flex z-depth-1-half">
+				<h4 id="show_start"></h4>
+				<h3 id="show_name"></h3>
+				<p id="show_description"></p>
+			</div>
+		</div>
+	</div>
+</div>
 
-<div class="container mb-4" id="last_songs" style="margin-top: 5rem;">
+<!-- Songhsitory-->
+<div class="container" id="last_songs">
     <div class="row">
         <div class="col-12 mt-5 mt-md-4">
             <h3>Letzte Songs:</h3>
@@ -75,7 +91,7 @@
 
     $(document).ready(function () {
         load_last_songs_fully(station);
-        $("#api_lfm_display_name").text(sender);
+        $("#api_lfm_display_name").text(getDisplayName);
         getSong(station);
         getWidth();
         $("#api_lfm_current_song1").khanShatyr();
