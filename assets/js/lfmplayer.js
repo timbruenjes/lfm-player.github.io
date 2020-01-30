@@ -39,6 +39,13 @@ function getShowInformation(station_name) {
 function getStationInformation(station_name) {
     $.getJSON("https://api.laut.fm/station/" + station, function (data) {
         $("#station_logo").attr('src', data.images.station);
+		$("#station_displayname").html(data.display_name);
+		$("#station_slogan").html(data.format);
+		$("#station_description").html(data.description);
+		$("#hp-link").attr('href', data.website);
+		$("#fb-link").attr('href', data.facebook_page);
+		$("#tw-link").attr('href', "https://twitter.com/" + data.twitter_name);
+		$("#ig-link").attr('href', "https://instagram.com/" + data.third_parties.instagram.name);
     })
 }
 
