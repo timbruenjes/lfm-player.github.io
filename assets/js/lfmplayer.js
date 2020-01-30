@@ -33,6 +33,9 @@ function getShowInformation(station_name) {
         $("#show_start").html(data.current_playlist.hour);
 		$("#show_name").html(data.current_playlist.name);
 		$("#show_description").html(data.current_playlist.description);
+		$("#next_start").html(data.next_playlist.hour);
+		$("#next_name").html(data.next_playlist.name);
+		$("#next_description").html(data.next_playlist.description);
     })
 }
 

@@ -72,24 +72,33 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 .station_info_container{
-		min-height: 100px;
+	min-height: 100px;
 }
 
 .station_logo {
 	background: white;
 }
 
-.current_show_container{
+.current_show_container, .station_details_container {
 	background: white;
 	border-radius: 2px;
 	padding: 10px;
+	min-height: 100px;
+}
+
+.station_details_links {
+	vertical-align: bottom;
 }
 
 #show_start:before {
 	content: "Seit: ";
 }
 
-#show_start:after {
+#next_start:before {
+	content: "Ab: ";
+}
+
+#show_start:after, #next_start:after {
 	content: " Uhr";
 }
 
@@ -114,7 +123,7 @@ a.social-link{
     overflow: hidden;
     text-align: center;
     text-shadow: none;
-	box-shadow: 0 0 10px rgba(0,0,0,.5);
+	box-shadow: 0 0 10px rgba(0,0,0,.5)
 }
 a.social-link:hover {
     opacity: 0.7;
