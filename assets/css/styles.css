@@ -77,6 +77,7 @@ h1,h2,h3,h4,h5,h6 {
 
 .station_logo {
 	background: white;
+	border-radius: 2px;
 }
 
 .current_show_container, .station_details_container {
