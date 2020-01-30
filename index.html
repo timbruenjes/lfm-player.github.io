@@ -40,7 +40,7 @@
 		
 		</div>
 		<div class="col-md-6 mt-5 mt-md-4 station_info_container">
-			<div class="current_show_container d-flex z-depth-1-half">
+			<div class="current_show_container z-depth-1-half">
 				<h4 id="show_start"></h4>
 				<h3 id="show_name"></h3>
 				<p id="show_description"></p>
@@ -92,6 +92,7 @@
     $(document).ready(function () {
         load_last_songs_fully(station);
         $("#api_lfm_display_name").text(getDisplayName);
+		getShowInformation(station);
         getSong(station);
         getWidth();
         $("#api_lfm_current_song1").khanShatyr();
