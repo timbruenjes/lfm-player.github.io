@@ -17,7 +17,7 @@ function getSong(station_name) {
     $.getJSON("https://api.laut.fm/station/" + station_name + "/current_song", function (current) {
         if (song_str !== (current.title + " " + current.artist.name)) {
             song_str = current.title + " " + current.artist.name;
-            $("#api_lfm_current_song1").html(current.artist.name + " mit: " + current.title);
+            $("#api_lfm_current_song1").html("<b>" + current.artist.name + "</b> mit: " + current.title);
         }
     })
 }
@@ -25,6 +25,14 @@ function getSong(station_name) {
 function getDisplayName(station_name) {
     $.getJSON("https://api.laut.fm/station/" + station, function (data) {
         $("#api_lfm_display_name").html(data.display_name);
+    })
+}
+
+function getShowInformation(station_name) {
+    $.getJSON("https://api.laut.fm/station/" + station, function (data) {
+        $("#show_start").html(data.current_playlist.hour);
+		$("#show_name").html(data.current_playlist.name);
+		$("#show_description").html(data.current_playlist.description);
     })
 }
 
