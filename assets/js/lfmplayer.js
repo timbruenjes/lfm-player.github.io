@@ -49,6 +49,10 @@ function getStationInformation(station_name) {
 		$("#fb-link").attr('href', data.facebook_page);
 		$("#tw-link").attr('href', "https://twitter.com/" + data.twitter_name);
 		$("#ig-link").attr('href', "https://instagram.com/" + data.third_parties.instagram.name);
+		$("#radiode-link").attr('href', data.third_parties.radiode.url);
+		$("#phonostar-link").attr('href', data.third_parties.phonostar.url);
+		$("#m3u-link").attr('href', data.stream_url + ".m3u");
+		$("#pls-link").attr('href', data.stream_url + ".pls");
     })
 }
 

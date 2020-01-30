@@ -65,6 +65,13 @@ h1,h2,h3,h4,h5,h6 {
 		height: 55px;
 		font-size: 1.3em;
 	}
+	a.social-link {
+	font-size: 1.3em;
+    width: 50px;
+    height: 50px;
+    padding: 10.75px 0;
+	box-shadow: none;
+	}
 }
 
 .playbtn {
@@ -129,6 +136,17 @@ a.social-link{
 a.social-link:hover {
     opacity: 0.7;
 }
+
+@media (max-width: 786px) {
+	a.social-link {
+	font-size: 1.4em;
+    width: 50px;
+    height: 50px;
+    padding: 9.75px 0;
+	box-shadow: none;
+	}
+}
+
 
 .link-hp {
   background: #666;
