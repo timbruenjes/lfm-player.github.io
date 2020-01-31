@@ -47,6 +47,7 @@ function setStationInformation(apiData) {
 function crawleLautApi(station_name) {
     $.getJSON("https://api.laut.fm/station/" + station_name, function (data) {
         setDisplayName(data);
+        changeFavicon(data);
         station_info && setStationInformation(data);
         current_show && setCurrentPlaylist(data);
         next_show && setNextPlaylist(data);
@@ -58,6 +59,19 @@ function crawlePlaylist(station_name) {
         current_show && setCurrentPlaylist(data);
         next_show && setNextPlaylist(data);
     });
+}
+
+function changeFavicon(apiData) {
+    document.head || (document.head = document.getElementsByTagName('head')[0]);
+    var link = document.createElement('link'),
+        oldLink = document.getElementById('dynamic-favicon');
+    link.id = 'dynamic-favicon';
+    link.rel = 'shortcut icon';
+    link.href = apiData.images.station;
+    if (oldLink) {
+        document.head.removeChild(oldLink);
+    }
+    document.head.appendChild(link);
 }
 
 function getSong(station_name) {
