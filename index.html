@@ -26,7 +26,8 @@
                 <button type="button" class="player-button playbtn btn-floating"><i class="fas play-pause fa-play"></i></button>
             </div>
             <div class="col-md-11 d-flex align-items-center" id="nowplaying">
-                <div class="d-inline-block"><span id="api_lfm_display_name"></span>&nbsp;spielt:&nbsp;</div><div id="api_lfm_current_song1"></div>
+                <div class="d-inline-block"><span id="api_lfm_display_name"></span>&nbsp;spielt:&nbsp;</div>
+                <div id="api_lfm_current_song1"></div>
             </div>
 
 
@@ -34,12 +35,12 @@
     </div>
 </nav>
 <!--Station Infos-->
-<div class="container" style="margin-top: 5rem;">
+<div id="station" class="container" style="margin-top: 5rem;">
 	<div class="row">
 		<div class="col-md-3 mt-5 mt-md-4">
 			<img id="station_logo" class="station_logo z-depth-1-half img-fluid" alt="Station Logo"/>
 		</div>
-		<div class="col-md-5 mt-5 mt-md-4 station_info_container">
+		<div class="col-md-5 mt-4 station_info_container">
 			<div class="station_details_container z-depth-1-half">
 				<h2 id="station_displayname"></h2>
 				<i><h5 id="station_slogan"></h5></i>
@@ -60,14 +61,13 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-4 mt-5 mt-md-4 station_info_container">
-			<div class="current_show_container z-depth-1-half">
+		<div class="col-md-4 mt-4 station_info_container">
+			<div id="current_show" class="current_show_container z-depth-1-half mb-4">
 				<h4 id="show_start"></h4>
 				<h3 id="show_name"></h3>
 				<p id="show_description"></p>
 			</div>
-			<br/>
-			<div class="current_show_container z-depth-1-half">
+			<div id="next_show" class="current_show_container z-depth-1-half">
 				<h4 id="next_start"></h4>
 				<h3 id="next_name"></h3>
 				<p id="next_description"></p>
@@ -90,9 +90,9 @@
 
 <!-- Footer -->
 <footer class="page-footer font-small grey text-center">
-
-  <img src="assets/img/lautfm.svg" style="height: 40px; margin: 10px 0;"/>
-
+<a href="https://laut.fm/">
+    <img src="assets/img/lautfm.svg" style="height: 40px; margin: 10px 0;" alt=""/>
+</a>
 </footer>
 <!-- Footer -->
 
@@ -107,35 +107,69 @@
 <script src="assets/js/lfmplayer.js"></script>
 <script src="assets/js/tracklist.js"></script>
 <script>
-    let color = $_GET('color');
+    /* =========================
+     *  $_GET vars and checks
+     * ========================= */
+    let station         = $_GET('station');
+    let color           = $_GET('color')            || '1ed9b4';
+
+    /* Boolean */
+    let badges          = $_GET('badges')           || true;
+    let current_show    = $_GET('current_show')     || true;
+    let next_show       = $_GET('next_show')        || true;
+    let station_info    = $_GET('station_info')     || true;
+    let cover           = $_GET('cover')            || false;
+
+    /* $_GET vars checks and translation */
+    (badges == 'true' || badges == 'false') ? badges = (badges == 'true') : badges = true;
+    (current_show == 'true' || current_show == 'false') ? current_show = (current_show == 'true') : current_show = true;
+    (next_show == 'true' || next_show == 'false') ? next_show = (next_show == 'true') : next_show = true;
+    (station_info == 'true' || station_info == 'false') ? station_info = (station_info == 'true') : station_info = true;
+    (cover == 'true' || cover == 'false') ? cover = (cover == 'true') : cover = false;
+
+    /* =========================
+     *  Other things
+     * ========================= */
+    /*
+     * TODO: Create cover functions
+     */
+    /* Hide not wanted stuff from $_GET */
+    !current_show   && $('#current_show').hide();
+    !next_show      && $('#next_show').hide();
+    !station_info   && $(function () {$('#station').hide(); $('#last_songs').css("margin-top", "5rem")});
+
+
+    /*
+     * TODO: Cleanup
+     */
     let root = document.documentElement;
     root.style.setProperty('--main-color', '#' + color);
 
-    let station = $_GET('station');
+    if (station == null) {
+        $("#api_lfm_current_song1").html("<b>No Station Name given</b>")
+    }
     let sender = station.toUpperCase();
     let last_song_data_cache;
     let song_str;
-    function cycle(){
+
+    function cycle() {
         setTimeout(function () {
             load_last_song(station);
-            $('[data-toggle="popover"]').popover({
-                trigger: 'focus'
-            })
+            $('[data-toggle="popover"]').popover({trigger: 'focus'});
             getSong(station);
+            crawlePlaylist(station);
             cycle();
         }, 2000);
     }
 
     $(document).ready(function () {
+        audiobtn();
         load_last_songs_fully(station);
-        $("#api_lfm_display_name").text(getDisplayName);
-		getShowInformation(station);
-		getStationInformation(station);
+        crawleLautApi(station);
         getSong(station);
         getWidth();
         $("#api_lfm_current_song1").khanShatyr();
         cycle();
-    }).ready(function () {
     });
 </script>
 

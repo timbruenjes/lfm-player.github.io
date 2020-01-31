@@ -5,17 +5,7 @@ function appendTemplate(append_selector, track_nr, artist, title, jingle = false
             .replace("{{artist}}", artist)
             .replace("{{title}}", title)
     );
-    appended.find('[title*="{{artist}}"]').each(function () {
-        $(this).attr("title", artist)
-    });
-    appended.find('[data-content*="{{title}}"]').each(function () {
-        if (jingle) {
-            title += "<br /><span class=\"badge badge-pill badge-info\">Jingle</span>";
-        } else {
-            title += "<br /><span class=\"badge badge-pill badge-danger\">Musik</span>";
-        }
-        $(this).attr("data-content", title)
-    })
+    replaceInPopover(appended, {artist: artist, title: title});
 }
 
 function prependTemplate(prepend_selector, track_nr, artist, title, jingle = false) {
@@ -25,17 +15,17 @@ function prependTemplate(prepend_selector, track_nr, artist, title, jingle = fal
             .replace("{{artist}}", artist)
             .replace("{{title}}", title)
     );
-    prepended.find('[title*="{{artist}}"]').each(function () {
-        $(this).attr("title", artist)
+    replaceInPopover(prepended, {artist: artist, title: title});
+}
+
+function replaceInPopover(DOMElement, data) {
+    DOMElement.find('[title*="{{artist}}"]').each(function () {
+        $(this).attr("title", data.artist)
     });
-    prepended.find('[data-content*="{{title}}"]').each(function () {
-        if (jingle) {
-            title += "<br /><span class=\"badge badge-pill badge-info\">Jingle</span>";
-        } else {
-            title += "<br /><span class=\"badge badge-pill badge-danger\">Musik</span>";
-        }
-        $(this).attr("data-content", title)
-    })
+    DOMElement.find('[data-content*="{{title}}"]').each(function () {
+        badges && (jingle ? data.title += "<br /><span class=\"badge badge-pill badge-info\">Jingle</span>" : data.title += "<br /><span class=\"badge badge-pill badge-danger\">Musik</span>");
+        $(this).attr("data-content", data.title)
+    });
 }
 
 function getItunesUrl(song, artist, german) {
