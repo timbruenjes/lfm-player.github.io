@@ -168,7 +168,7 @@
         crawleLautApi(station);
         getSong(station);
         getWidth();
-        $("#api_lfm_current_song1").khanShatyr();
+        $("#api_lfm_current_song1").khanShatyr({delay: 2000, pause: 300, max_kerning: -0.05}).css('color', 'white');
         cycle();
     });
 </script>

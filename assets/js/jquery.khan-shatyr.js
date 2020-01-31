@@ -103,7 +103,7 @@
   
   $.fn.khanShatyr = function(custom_opts){
     var opts = $.extend( {
-      pause: 300,           // the pause when changing the direction
+      pause: 200,           // the pause when changing the direction
       delay: 2000,          // the duration for the animation (aka "speed")
       max_kerning: -0.05,   // try to fit content up to this kerning
       easing: 'linear',     // animation easing function
