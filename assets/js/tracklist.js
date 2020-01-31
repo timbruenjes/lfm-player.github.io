@@ -23,7 +23,7 @@ function replaceInPopover(DOMElement, data) {
         $(this).attr("title", data.artist)
     });
     DOMElement.find('[data-content*="{{title}}"]').each(function () {
-        badges && (jingle ? data.title += "<br /><span class="badge badge-pill badge-info\">Jingle</span>" : data.title += "<br /><span class=\"badge badge-pill badge-danger\">Musik</span>");
+        badges && (jingle ? data.title += "<br /><span class=\"badge badge-pill badge-info\">Jingle</span>" : data.title += "<br /><span class=\"badge badge-pill badge-danger\">Musik</span>");
         $(this).attr("data-content", data.title)
     });
 }
