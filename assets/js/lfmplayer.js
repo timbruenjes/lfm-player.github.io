@@ -106,7 +106,7 @@ function createWebApp(apiData) {
     document.head || (document.head = document.getElementsByTagName('head')[0]);
     var link3 = document.createElement('meta'),
         oldLink3 = document.getElementById('dynamic-webapp-3');
-    link3.id = 'dynamic-webapp-4';
+    link3.id = 'dynamic-webapp-3';
     link3.name = 'theme-color';
     link3.content = '#' + color;
     if (oldLink3) {
