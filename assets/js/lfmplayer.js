@@ -104,27 +104,49 @@ function createWebApp(apiData) {
     document.head.appendChild(link2);
 
     document.head || (document.head = document.getElementsByTagName('head')[0]);
-    var link4 = document.createElement('meta'),
-        oldLink4 = document.getElementById('dynamic-webapp-4');
-    link4.id = 'dynamic-webapp-4';
-    link4.name = 'theme-color';
-    link4.content = '#' + color;
+    var link3 = document.createElement('meta'),
+        oldLink3 = document.getElementById('dynamic-webapp-3');
+    link3.id = 'dynamic-webapp-4';
+    link3.name = 'theme-color';
+    link3.content = '#' + color;
     if (oldLink3) {
+        document.head.removeChild(oldLink3);
+    }
+    document.head.appendChild(link3);
+
+    document.head || (document.head = document.getElementsByTagName('head')[0]);
+    var link4 = document.createElement('link'),
+        oldLink4 = document.getElementById('dynamic-webapp-4');
+    link4.id = 'dynamic-webapp-3';
+    link4.rel = 'apple-touch-icon';
+    link4.size = '180x180';
+    link4.href = apiData.images.station;
+    if (oldLink4) {
         document.head.removeChild(oldLink4);
     }
     document.head.appendChild(link4);
 
     document.head || (document.head = document.getElementsByTagName('head')[0]);
-    var link3 = document.createElement('link'),
-        oldLink3 = document.getElementById('dynamic-webapp-3');
-    link3.id = 'dynamic-webapp-3';
-    link3.rel = 'apple-touch-icon';
-    link3.size = '180x180';
-    link3.href = apiData.images.station;
-    if (oldLink3) {
-        document.head.removeChild(oldLink3);
+    var link5 = document.createElement('meta'),
+        oldLink5 = document.getElementById('dynamic-webapp-5');
+    link5.id = 'dynamic-webapp-5';
+    link5.name = 'msapplication-TileColor';
+    link5.content = '#' + color;
+    if (oldLink5) {
+        document.head.removeChild(oldLink5);
     }
-    document.head.appendChild(link3);
+    document.head.appendChild(link5);
+
+    document.head || (document.head = document.getElementsByTagName('head')[0]);
+    var link6 = document.createElement('meta'),
+        oldLink6 = document.getElementById('dynamic-webapp-6');
+    link6.id = 'dynamic-webapp-6';
+    link6.name = 'msapplication-TileImage';
+    link6.content = apiData.images.stationr;
+    if (oldLink6) {
+        document.head.removeChild(oldLink6);
+    }
+    document.head.appendChild(link6);
 }
 
 function getSong(station_name) {
