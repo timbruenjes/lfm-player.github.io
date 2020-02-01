@@ -48,7 +48,7 @@ function crawleLautApi(station_name) {
     $.getJSON("https://api.laut.fm/station/" + station_name, function (data) {
         setDisplayName(data);
         changeFavicon(data);
-        document.title = data.display_name;
+        document.title = data.display_name.toUpperCase() + " - PLAYER";
         station_info && setStationInformation(data);
         current_show && setCurrentPlaylist(data);
         next_show && setNextPlaylist(data);
