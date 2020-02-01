@@ -104,6 +104,17 @@ function createWebApp(apiData) {
     document.head.appendChild(link2);
 
     document.head || (document.head = document.getElementsByTagName('head')[0]);
+    var link4 = document.createElement('meta'),
+        oldLink4 = document.getElementById('dynamic-webapp-4');
+    link4.id = 'dynamic-webapp-4';
+    link4.name = 'theme-color';
+    link4.content = '#' + color;
+    if (oldLink3) {
+        document.head.removeChild(oldLink4);
+    }
+    document.head.appendChild(link4);
+
+    document.head || (document.head = document.getElementsByTagName('head')[0]);
     var link3 = document.createElement('link'),
         oldLink3 = document.getElementById('dynamic-webapp-3');
     link3.id = 'dynamic-webapp-3';
