@@ -129,10 +129,12 @@ a.social-link{
     overflow: hidden;
     text-align: center;
     text-shadow: none;
-	box-shadow: 0 0 10px rgba(0,0,0,.5)
+	box-shadow: none;
+    transition: all .2s ease-in-out;
 }
 a.social-link:hover {
-    opacity: 0.7;
+    opacity: 0.8 ;
+    box-shadow: 0 0 10px rgba(0,0,0,.5);
 }
 
 @media (max-width: 786px) {
@@ -164,4 +166,15 @@ a.social-link:hover {
 .link-ig {
   background: radial-gradient(circle farthest-corner at 35% 90%,#fec564,transparent 50%),radial-gradient(circle farthest-corner at 0 140%,#fec564,transparent 50%),radial-gradient(ellipse farthest-corner at 0 -25%,#5258cf,transparent 50%),radial-gradient(ellipse farthest-corner at 20% -50%,#5258cf,transparent 50%),radial-gradient(ellipse farthest-corner at 100% 0,#893dc2,transparent 50%),radial-gradient(ellipse farthest-corner at 60% -20%,#893dc2,transparent 50%),radial-gradient(ellipse farthest-corner at 100% 100%,#d9317a,transparent),linear-gradient(#6559ca,#bc318f 30%,#e33f5f 50%,#f77638 70%,#fec66d 100%);;
   color: white;
+}
+
+.btn_external {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.btn_external .external_listening {
+    margin: 10px 0;
+    padding: 10px 0;
 }
