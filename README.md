@@ -11,5 +11,5 @@ Dieser Pop-Up Player spielt das mittels `station` definierte Radio, zeigt die Tr
 | current_show | Boolean | `true` | Set if the current playlist should get displayed |
 | next_show | Boolean | `true` | Set if the nex playlist should get displayed |
 | station_info | Boolean | `true` | Set if the whole station information should get displayed (Playlist included) |
-| cover | Boolean | `false` | Changes the track number with the cover display. |
+| cover | Boolean | `false` | **[WIP]** Exchanges the track number with the cover display. |
 
