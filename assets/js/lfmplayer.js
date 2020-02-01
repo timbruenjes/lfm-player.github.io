@@ -48,6 +48,7 @@ function crawleLautApi(station_name) {
     $.getJSON("https://api.laut.fm/station/" + station_name, function (data) {
         setDisplayName(data);
         changeFavicon(data);
+        createWebApp(data);
         document.title = data.display_name.toUpperCase() + " - PLAYER";
         station_info && setStationInformation(data);
         current_show && setCurrentPlaylist(data);
@@ -73,6 +74,46 @@ function changeFavicon(apiData) {
         document.head.removeChild(oldLink);
     }
     document.head.appendChild(link);
+}
+
+function createWebApp(apiData) {
+    document.head || (document.head = document.getElementsByTagName('head')[0]);
+    var link1 = document.createElement('link'),
+        oldLink1 = document.getElementById('dynamic-webapp-1');
+    link1.id = 'dynamic-webapp-1';
+    link1.rel = 'icon';
+    link1.type = 'image/png';
+    link1.size = '96x96';
+    link1.href = apiData.images.station;
+    if (oldLink1) {
+        document.head.removeChild(oldLink1);
+    }
+    document.head.appendChild(link1);
+
+    document.head || (document.head = document.getElementsByTagName('head')[0]);
+    var link2 = document.createElement('link'),
+        oldLink2 = document.getElementById('dynamic-webapp-2');
+    link2.id = 'dynamic-webapp-2';
+    link2.rel = 'icon';
+    link2.type = 'image/png';
+    link2.size = '32x32';
+    link2.href = apiData.images.station;
+    if (oldLink2) {
+        document.head.removeChild(oldLink2);
+    }
+    document.head.appendChild(link2);
+
+    document.head || (document.head = document.getElementsByTagName('head')[0]);
+    var link3 = document.createElement('link'),
+        oldLink3 = document.getElementById('dynamic-webapp-3');
+    link3.id = 'dynamic-webapp-3';
+    link3.rel = 'apple-touch-icon';
+    link3.size = '180x180';
+    link3.href = apiData.images.station;
+    if (oldLink3) {
+        document.head.removeChild(oldLink3);
+    }
+    document.head.appendChild(link3);
 }
 
 function getSong(station_name) {
