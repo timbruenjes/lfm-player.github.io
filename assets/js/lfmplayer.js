@@ -187,9 +187,11 @@ function audiobtn() {
         if (aud.paused) {
             aud.play();
             $('.play-pause').removeClass('fa-play').addClass('fa-stop');
+            $('.icon.audio').removeClass('hidden');
         } else {
             aud.pause();
             $('.play-pause').removeClass('fa-stop').addClass('fa-play');
+            $('.icon.audio').addClass('hidden');
         }
 
     })
