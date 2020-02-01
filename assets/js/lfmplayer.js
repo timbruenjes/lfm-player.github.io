@@ -117,7 +117,7 @@ function createWebApp(apiData) {
     document.head || (document.head = document.getElementsByTagName('head')[0]);
     var link4 = document.createElement('link'),
         oldLink4 = document.getElementById('dynamic-webapp-4');
-    link4.id = 'dynamic-webapp-3';
+    link4.id = 'dynamic-webapp-4';
     link4.rel = 'apple-touch-icon';
     link4.size = '180x180';
     link4.href = apiData.images.station;
@@ -142,7 +142,7 @@ function createWebApp(apiData) {
         oldLink6 = document.getElementById('dynamic-webapp-6');
     link6.id = 'dynamic-webapp-6';
     link6.name = 'msapplication-TileImage';
-    link6.content = apiData.images.stationr;
+    link6.content = apiData.images.station;
     if (oldLink6) {
         document.head.removeChild(oldLink6);
     }
