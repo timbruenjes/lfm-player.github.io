@@ -84,7 +84,7 @@ function createWebApp(apiData) {
     link1.rel = 'icon';
     link1.type = 'image/png';
     link1.size = '96x96';
-    link1.href = apiData.images.station;
+    link1.href = apiData.images.station_120x120;
     if (oldLink1) {
         document.head.removeChild(oldLink1);
     }
@@ -97,7 +97,7 @@ function createWebApp(apiData) {
     link2.rel = 'icon';
     link2.type = 'image/png';
     link2.size = '32x32';
-    link2.href = apiData.images.station;
+    link2.href = apiData.images.station_80x80;
     if (oldLink2) {
         document.head.removeChild(oldLink2);
     }
@@ -147,6 +147,18 @@ function createWebApp(apiData) {
         document.head.removeChild(oldLink6);
     }
     document.head.appendChild(link6);
+
+    document.head || (document.head = document.getElementsByTagName('head')[0]);
+    var link7 = document.createElement('link'),
+        oldLink7 = document.getElementById('dynamic-webapp-7');
+    link7.id = 'dynamic-webapp-7';
+    link7.rel = 'shortcut icon';
+    link7.sizes = '1024x1024';
+    link7.href = apiData.images.station_640x640;
+    if (oldLink7) {
+        document.head.removeChild(oldLink7);
+    }
+    document.head.appendChild(link7);
 }
 
 function getSong(station_name) {
