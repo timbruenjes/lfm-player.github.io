@@ -43,7 +43,7 @@
 		<div class="col-md-3 mt-5 mt-md-4">
 			<img id="station_logo" class="station_logo z-depth-1-half img-fluid" alt="Station Logo"/>
 		</div>
-		<div class="col-md-5 mt-4 station_info_container">
+		<div class="col-md-5 mt-4 station_info_container" id="station_info">
 			<div class="station_details_container z-depth-1-half">
 				<h2 id="station_displayname"></h2>
 				<i><h5 id="station_slogan"></h5></i>
@@ -64,7 +64,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-4 mt-4 station_info_container">
+		<div class="col-md-4 mt-4 station_info_container" id="playlist_wrapper">
 			<div id="current_show" class="current_show_container z-depth-1-half mb-4">
 				<h4 id="show_start"></h4>
 				<h3 id="show_name"></h3>
@@ -140,6 +140,10 @@
     !current_show   && $('#current_show').hide();
     !next_show      && $('#next_show').hide();
     !station_info   && $(function () {$('#station').hide(); $('#last_songs').css("margin-top", "5rem")});
+    if (!current_show && !next_show) {
+        $("#playlist_wrapper").addClass("d-none");
+        $("#station_info").removeClass("col-md-5").addClass("col-md-9");
+    }
 
 
     /*
