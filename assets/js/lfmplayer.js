@@ -40,6 +40,7 @@ function setStationInformation(apiData) {
     apiData.third_parties.instagram ? $("#ig-link").attr('href', "https://instagram.com/" + apiData.third_parties.instagram.name) : $("#ig-link").hide();
     $("#radiode-link").attr('href', apiData.third_parties.radiode.url);
     $("#phonostar-link").attr('href', apiData.third_parties.phonostar.url);
+    $("#tunein-link").attr('href', apiData.third_parties.tunein.url);
     $("#m3u-link").attr('href', apiData.stream_url + ".m3u");
     $("#pls-link").attr('href', apiData.stream_url + ".pls");
 }
