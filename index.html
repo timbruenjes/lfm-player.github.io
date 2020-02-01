@@ -3,7 +3,6 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>lfm-player</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/mdb/animations-extended.min.css">
     <link rel="stylesheet" href="assets/css/mdb/datatables-select.min.css">
@@ -16,6 +15,10 @@
     <link rel="stylesheet" href="assets/css/Navigation-Clean.css">
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="assets/css/fontawesome/all.css">
+
+    <!--WebApp Basics-->
+    <meta name = "apple-mobile-web-app-capable" content = "yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
 </head>
 
 <body>
@@ -168,7 +171,7 @@
         crawleLautApi(station);
         getSong(station);
         getWidth();
-        $("#api_lfm_current_song1").khanShatyr();
+        $("#api_lfm_current_song1").khanShatyr({delay: 2000, pause: 300, max_kerning: -0.05}).css('color', 'white');
         cycle();
     });
 </script>
