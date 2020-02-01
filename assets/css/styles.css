@@ -44,25 +44,43 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 .player-button {
-  border: none;
-  color: white;
-  height: 40px;
-  width: 40px;
-  border-radius: 100%;
-  font-size: 1.05em;
-  text-align: center;
-  align-items: center;
-  align-content: center;
-  vertical-align: middle;
+    border: none;
+    color: white;
+    height: 40px;
+    width: 40px;
+    border-radius: 100%;
+    font-size: 1.05em;
+    text-align: center;
+    align-items: center;
+    align-content: center;
+    vertical-align: middle;
+    margin-right: 5px;
+}
 
+.mutebtn {
+    border-color: var(--main-color);
+    border: 2px solid;
+    color: var(--main-color);
+    height: 40px;
+    width: 40px;
+    border-radius: 100%;
+    font-size: 1.05em;
+    text-align: center;
+    align-items: center;
+    align-content: center;
+    vertical-align: middle;
+    background: transparent;
 }
 
 @media (max-width: 786px) {
-	.player-button {
+	.player-button, .mutebtn {
 		width: 55px;
 		height: 55px;
 		font-size: 1.3em;
 	}
+    .player-button {
+        margin-right: 10px;
+    }
 	a.social-link {
 	font-size: 1.3em;
     width: 50px;

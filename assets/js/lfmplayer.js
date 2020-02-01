@@ -193,4 +193,18 @@ function audiobtn() {
         }
 
     })
+    $('.mutebtn').on('click', function(){
+        if (aud.muted == false) {
+            aud.muted = true;
+            $('.mute-unmute').removeClass('fa-volume-up');
+            $('.mute-unmute').addClass('fa-volume-mute');
+            $('.mute-unmute').addClass('muted');
+        }
+        else {
+            aud.muted = false;
+            $('.mute-unmute').removeClass('fa-volume-mute');
+            $('.mute-unmute').removeClass('muted');
+            $('.mute-unmute').addClass('fa-volume-up');
+        }
+    })
 }
