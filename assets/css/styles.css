@@ -238,31 +238,31 @@ a.social-link:hover {
     border-radius: 0.125em;
 }
 
-.audio::after { animation: audio4 1.35s infinite; }
+.audio::after { animation: audio4 1.5s infinite linear; }
 
 .audio i::before {
     left: -0.8125em;
-    animation: audio1 1.35s infinite;
+    animation: audio1 1.5s infinite linear;
 }
 
 .audio i:first-child {
     margin-left: -1.875em;
-    animation: audio2 1.35s infinite;
+    animation: audio2 1.5s infinite linear;
 }
 
 .audio i:last-child {
     margin-left: 1.875em;
-    animation: audio6 1.35s infinite;
+    animation: audio6 1.5s infinite linear;
 }
 
-.audio i:last-child::before { animation: audio5 1.35s infinite; }
+.audio i:last-child::before { animation: audio5 1.5s infinite linear; }
 
-.audio i:last-child::after { animation: audio7 1.35s infinite; }
+.audio i:last-child::after { animation: audio7 1.5s infinite linear; }
 
 @keyframes audio1 {
     9% { height: 85%; }
     36% { height: 0.5em; }
-    42% { height: 100%; }
+    42% { height: 20%; }
     69% { height: 0.5em; }
     76% { height: 100%; }
     100% { height: 85%; }
@@ -278,48 +278,48 @@ a.social-link:hover {
 }
 
 @keyframes audio3 {
-    9% { height: 100%; }
-    36% { height: 0.5em; }
-    42% { height: 3.5em; }
-    69% { height: 0.5em; }
-    76% { height: 100%; }
-    100% { height: 85%; }
-}
-
-@keyframes audio4 {
-    9% { height: 60%; }
+    9% { height: 50%; }
     36% { height: 0.5em; }
     42% { height: 100%; }
     69% { height: 0.5em; }
     76% { height: 100%; }
-    100% { height: 85%; }
+    100% { height: 65%; }
+}
+
+@keyframes audio4 {
+    9% { height: 20%; }
+    36% { height: 0.5em; }
+    42% { height: 90%; }
+    69% { height: 0.5em; }
+    76% { height: 100%; }
+    100% { height: 50%; }
 }
 
 @keyframes audio5 {
     9% { height: 100%; }
     36% { height: 0.5em; }
-    42% { height: 88%; }
-    69% { height: 0.5em; }
-    76% { height: 100%; }
-    100% { height: 85%; }
-}
-
-@keyframes audio6 {
-    9% { height: 100%; }
-    36% { height: 0.5em; }
-    42% { height: 70%; }
+    42% { height: 45%; }
     69% { height: 0.5em; }
     76% { height: 100%; }
     100% { height: 75%; }
 }
 
+@keyframes audio6 {
+    9% { height: 100%; }
+    36% { height: 0.5em; }
+    42% { height: 50%; }
+    69% { height: 0.5em; }
+    76% { height: 100%; }
+    100% { height: 55%; }
+}
+
 @keyframes audio7 {
     9% { height: 100%; }
     36% { height: 0.5em; }
-    42% { height: 75%; }
+    42% { height: 50%; }
     69% { height: 0.5em; }
     76% { height: 100%; }
-    100% { height: 85%; }
+    100% { height: 75%; }
 }
 
 @media (max-width: 786px) {
