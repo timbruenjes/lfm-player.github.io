@@ -36,6 +36,7 @@ function setStationInformation(apiData) {
     $("#station_description").html(apiData.description);
     apiData.website ? $("#hp-link").attr('href', apiData.website) : $("#hp-link").hide();
     apiData.website ? $("#lfm-link").attr('href', apiData.page_url) : $("#lfm-link").hide();
+    apiData.website ? $("#rss-link").attr('href', apiData.third_parties.rss.url) : $("#rss-link").hide();
     apiData.facebook_page ? $("#fb-link").attr('href', apiData.facebook_page) : $("#fb-link").hide();
     apiData.twitter_name ? $("#tw-link").attr('href', "https://twitter.com/" + apiData.twitter_name) : $("#tw-link").hide();
     apiData.third_parties.instagram ? $("#ig-link").attr('href', "https://instagram.com/" + apiData.third_parties.instagram.name) : $("#ig-link").hide();
