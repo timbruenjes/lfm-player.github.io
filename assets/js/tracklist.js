@@ -5,7 +5,7 @@ function appendTemplate(append_selector, track_nr, artist, title, jingle = false
             .replace("{{artist}}", artist)
             .replace("{{title}}", title)
     );
-    replaceInPopover(appended, {artist: artist, title: title});
+    replaceInPopover(appended, {artist: artist, title: title, jingle: jingle});
 }
 
 function prependTemplate(prepend_selector, track_nr, artist, title, jingle = false) {
@@ -15,7 +15,7 @@ function prependTemplate(prepend_selector, track_nr, artist, title, jingle = fal
             .replace("{{artist}}", artist)
             .replace("{{title}}", title)
     );
-    replaceInPopover(prepended, {artist: artist, title: title});
+    replaceInPopover(prepended, {artist: artist, title: title, jingle: jingle});
 }
 
 function replaceInPopover(DOMElement, data) {
@@ -23,7 +23,7 @@ function replaceInPopover(DOMElement, data) {
         $(this).attr("title", data.artist)
     });
     DOMElement.find('[data-content*="{{title}}"]').each(function () {
-        badges && (jingle ? data.title += '<br /><span class="badge badge-pill badge-info">Jingle</span>' : data.title += '<br /><span class="badge badge-pill badge-danger">Musik</span>');
+        badges && (data.jingle ? data.title += '<br /><span class="badge badge-pill badge-info">Jingle</span>' : data.title += '<br /><span class="badge badge-pill badge-danger">Musik</span>');
         $(this).attr("data-content", data.title)
     });
 }
