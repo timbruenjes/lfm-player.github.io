@@ -9,6 +9,17 @@
     margin: 4px;
     background-color: #fff;
     border-radius: 3px;
+    position: relative;
+
+    .cover {
+      position: absolute;
+      left: 0;
+      top:0;
+      img {
+        position: relative;
+        max-height: 56px;
+      }
+    }
 
     .track_nr {
       min-width: 32px;
@@ -24,6 +35,10 @@
       img {
         max-height: 35px;
       }
+    }
+
+    .cover + .song_wrapper {
+      margin-left: 2.5rem;
     }
 
     .song_wrapper {

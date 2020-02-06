@@ -116,7 +116,7 @@
     let current_show    = $_GET('current_show')     || true;
     let next_show       = $_GET('next_show')        || true;
     let station_info    = $_GET('station_info')     || true;
-    let cover           = $_GET('cover')            || false; /* Work in progress */
+    let cover           = $_GET('cover')            || false;
 
     /* $_GET vars checks and translation */
     (badges == 'true' || badges == 'false') ? badges = (badges == 'true') : badges = true;
@@ -128,9 +128,6 @@
     /* =========================
      *  Other things
      * ========================= */
-    /*
-     * TODO: Create cover functions
-     */
     /* Hide not wanted stuff from $_GET */
     !current_show   && $('#current_show').hide();
     !next_show      && $('#next_show').hide();
@@ -198,7 +195,7 @@
 <script type="text/template" id="song_detailed_cover">
     <div class="col-md-4">
         <div class="last_song d-flex z-depth-1-half">
-            <span class="track_nr">{{track_nr}}</span>
+            <span class="cover"><img src="{{cover}}" alt="" class="w-100"></span>
             <div class="song_wrapper">
                 <h4 class="last_text last_artist">
                     {{artist}}

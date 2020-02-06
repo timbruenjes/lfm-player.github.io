@@ -1,20 +1,26 @@
-function appendTemplate(append_selector, track_nr, artist, title, jingle = false) {
+function appendTemplate(append_selector, track_nr, artist, title, jingle = false, cover = false) {
+    let template;
+    !cover ? template = "#song_detailed" : template = "#song_detailed_cover";
     let appended = $(append_selector).append(
-        $("#song_detailed").html()
+        $(template).html()
             .replace("{{track_nr}}", track_nr)
             .replace("{{artist}}", artist)
             .replace("{{title}}", title)
     );
+    !cover ? void.0 : appended.find('[src*="{{cover}}"]').each(function(){$(this).attr("src", cover)});
     replaceInPopover(appended, {artist: artist, title: title, jingle: jingle});
 }
 
-function prependTemplate(prepend_selector, track_nr, artist, title, jingle = false) {
+function prependTemplate(prepend_selector, track_nr, artist, title, jingle = false, cover = false) {
+    let template;
+    !cover ? template = "#song_detailed" : template = "#song_detailed_cover";
     let prepended = $(prepend_selector).prepend(
-        $("#song_detailed").html()
+        $(template).html()
             .replace("{{track_nr}}", track_nr)
             .replace("{{artist}}", artist)
             .replace("{{title}}", title)
     );
+    !cover ? void.0 : prepended.find('[src*="{{cover}}"]').each(function(){$(this).attr("src", cover)});
     replaceInPopover(prepended, {artist: artist, title: title, jingle: jingle});
 }
 
@@ -28,21 +34,30 @@ function replaceInPopover(DOMElement, data) {
     });
 }
 
-function getItunesUrl(song, artist, german) {
+function getItunesUrl(song, artist) {
     let url = "https://itunes.apple.com/search?term=" + encodeURIComponent(artist) + "+" + encodeURIComponent(song) + "&entity=album&entity=musicArtist&entity=musicTrack&limit=1";
-    if (german) {
-        url = url + "&country=de"
-    }
     return url;
 }
 
+function getImageUrl(url, width, height) {
+    let imageUrl = url.substring(0, url.lastIndexOf('/')) + '/' + width + "x" + height + ".jpg";
+    return imageUrl.replace(/^(http):\/\//gi, "https://")
+}
 
 function load_last_songs_fully(station_name) {
     $.getJSON("https://api.laut.fm/station/" + station_name + "/last_songs", function (full_data) {
         last_song_data_cache = full_data.slice(0);
         full_data.shift();
         for (const [key, value] of Object.entries(full_data)) {
-            appendTemplate("#song_row", parseInt(key, 10) + 1, value.artist.name, value.title, value.type === "jingle");
+            if (cover) {
+                $.getJSON(getItunesUrl(value.artist.name, value.title), function (iTunesData) {
+                    let img_url;
+                    iTunesData.resultCount === 0 ? img_url = $("#station_logo").attr('src') : img_url = getImageUrl(iTunesData.results[0].artworkUrl100, 60, 60);
+                    appendTemplate("#song_row", parseInt(key, 10) + 1, value.artist.name, value.title, value.type === "jingle", img_url);
+                })
+            } else {
+                appendTemplate("#song_row", parseInt(key, 10) + 1, value.artist.name, value.title, value.type === "jingle");
+            }
         }
     });
     $('[data-toggle="popover"]').popover({
@@ -57,10 +72,18 @@ function load_last_song(station_name) {
             last_song_data_cache = part_data.slice(0);
             part_data.shift();
             $("#song_row div.col-md-4:last-child").remove();
-            $("#song_row").children().each(function () {
+            !cover && $("#song_row").children().each(function () {
                 $(".track_nr", this).text(parseInt($(".track_nr", this).text(), 10) + 1);
             });
-            prependTemplate("#song_row", 1, part_data[0].artist.name, part_data[0].title, part_data[0].type === "jingle");
+            if (cover) {
+                $.getJSON(getItunesUrl(part_data[0].artist.name, part_data[0].title), function (iTunesData) {
+                    let img_url;
+                    iTunesData.resultCount === 0 ? img_url = $("#station_logo").attr('src') : img_url = getImageUrl(iTunesData.results[0].artworkUrl100, 60, 60);
+                    prependTemplate("#song_row", 1, part_data[0].artist.name, part_data[0].title, part_data[0].type === "jingle", img_url);
+                })
+            } else {
+                prependTemplate("#song_row", 1, part_data[0].artist.name, part_data[0].title, part_data[0].type === "jingle");
+            }
 
         }
     });

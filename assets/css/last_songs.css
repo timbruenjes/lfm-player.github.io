@@ -8,6 +8,16 @@
   margin: 4px;
   background-color: #fff;
   border-radius: 3px;
+  position: relative;
+}
+#last_songs .last_song .cover {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+#last_songs .last_song .cover img {
+  position: relative;
+  max-height: 56px;
 }
 #last_songs .last_song .track_nr {
   min-width: 32px;
@@ -22,6 +32,9 @@
 }
 #last_songs .last_song .track_nr img {
   max-height: 35px;
+}
+#last_songs .last_song .cover + .song_wrapper {
+  margin-left: 2.5rem;
 }
 #last_songs .last_song .song_wrapper {
   flex-grow: 1;
