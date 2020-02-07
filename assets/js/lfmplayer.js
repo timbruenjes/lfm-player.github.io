@@ -188,6 +188,8 @@ function audiobtn() {
             aud.play();
             $('.play-pause').removeClass('fa-play').addClass('fa-stop');
             $('.icon.audio').removeClass('hidden');
+
+
         } else {
             aud.pause();
             $('.play-pause').removeClass('fa-stop').addClass('fa-play');
@@ -210,3 +212,33 @@ function audiobtn() {
         }
     })
 }
+
+
+
+// Regelmäßig checken, ob der Player (noch) läuft
+window.setInterval(CheckPlayerState, 2000);
+
+
+// Player-Status
+function CheckPlayerState() {
+    let aud = $('audio')[0];
+    if (aud.paused) {
+    } else {
+        updateMetadata();
+    }
+}
+
+function updateMetadata() {
+
+    navigator.mediaSession.metadata = new MediaMetadata({
+        title: current.title,
+        artist: current.artist.name,
+        album: data.display_name.toUpperCase(),
+        artwork: [
+            {src: apiData.images.station, sizes: "80x80"},
+            {src: apiData.images.station, sizes: "120x120"},
+            {src: apiData.images.station, sizes: "640x640"}
+        ]
+    });
+}
+
