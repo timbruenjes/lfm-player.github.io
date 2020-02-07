@@ -213,13 +213,8 @@ function audiobtn() {
     })
 }
 
-
-
-// Regelmäßig checken, ob der Player (noch) läuft
 window.setInterval(CheckPlayerState, 2000);
 
-
-// Player-Status
 function CheckPlayerState() {
     let aud = $('audio')[0];
     if (aud.paused) {
@@ -229,16 +224,18 @@ function CheckPlayerState() {
 }
 
 function updateMetadata() {
-
-    navigator.mediaSession.metadata = new MediaMetadata({
-        title: current.title,
-        artist: current.artist.name,
-        album: data.display_name.toUpperCase(),
-        artwork: [
-            {src: apiData.images.station, sizes: "80x80"},
-            {src: apiData.images.station, sizes: "120x120"},
-            {src: apiData.images.station, sizes: "640x640"}
-        ]
-    });
+    $.getJSON("https://api.laut.fm/station/" + station + "/current_song", function (current) {
+        let npartist = current.artist.name;
+        let nptitle = current.title;
+        navigator.mediaSession.metadata = new MediaMetadata({
+            title: nptitle,
+            artist: npartist,
+            album: sender,
+            // artwork: [
+                // {src: apiData.images.station, sizes: "80x80"},
+                // {src: apiData.images.station, sizes: "120x120"},
+                // {src: apiData.images.station, sizes: "640x640"}
+            //]
+        });
+    })
 }
-
