@@ -55,7 +55,7 @@ function load_last_songs_fully(station_name) {
             if (cover) {
                 $.getJSON(getItunesUrl(value.artist.name, value.title), function (iTunesData) {
                     let img_url;
-                    iTunesData.resultCount === 0 ? img_url = $("#station_logo").attr('src') : img_url = getImageUrl(iTunesData.results[0].artworkUrl100, 60, 60);
+                    iTunesData.resultCount === 0 ? img_url = $("#station_logo").attr('src') : img_url = getImageUrl(iTunesData.results[0].artworkUrl100, 70, 70);
                     appendTemplate("#song_row", parseInt(key, 10) + 1, value.artist.name, value.title, value.type === "jingle", img_url);
                 }).fail(function () {
                     appendTemplate("#song_row", parseInt(key, 10) + 1, value.artist.name, value.title, value.type === "jingle", $("#station_logo").attr('src'));
@@ -83,7 +83,7 @@ function load_last_song(station_name) {
             if (cover) {
                 $.getJSON(getItunesUrl(part_data[0].artist.name, part_data[0].title), function (iTunesData) {
                     let img_url;
-                    iTunesData.resultCount === 0 ? img_url = $("#station_logo").attr('src') : img_url = getImageUrl(iTunesData.results[0].artworkUrl100, 60, 60);
+                    iTunesData.resultCount === 0 ? img_url = $("#station_logo").attr('src') : img_url = getImageUrl(iTunesData.results[0].artworkUrl100, 70, 70);
                     prependTemplate("#song_row", 1, part_data[0].artist.name, part_data[0].title, part_data[0].type === "jingle", img_url);
                 }).fail(function () {
                     prependTemplate("#song_row", 1, part_data[0].artist.name, part_data[0].title, part_data[0].type === "jingle", $("#station_logo").attr('src'));
