@@ -2,45 +2,52 @@
 @import "last_songs.min.css";
 
 :root {
-  --main-color: #1ed9b4;
+    --main-color: #1ed9b4;
+}
+
+html {
+    height: 100%;
 }
 
 body {
-  background: #e8e8e8;
-  font-family: "Roboto", sans-serif !important;
-  font-weight: 400;
+    background: #e8e8e8;
+    font-family: "Roboto", sans-serif !important;
+    font-weight: 400;
+    min-height: 100%;
 }
-h1,h2,h3,h4,h5,h6 {
-  font-family: "Work Sans", sans-serif;
-  font-weight: 700;
-  color: #000a28;
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Work Sans", sans-serif;
+    font-weight: 700;
+    color: #000a28;
 }
 
 #nowplaying {
-  vertical-align: middle;
-  align-content: center;
-  align-items: center;
-  align-self: center;
-  font-weight: 400;
-  white-space: nowrap;
-  overflow: hidden;
+    vertical-align: middle;
+    align-content: center;
+    align-items: center;
+    align-self: center;
+    font-weight: 400;
+    white-space: nowrap;
+    overflow: hidden;
 }
+
 #api_lfm_display_name {
-  font-weight: 500;
-  text-transform: uppercase;
+    font-weight: 500;
+    text-transform: uppercase;
 }
 
 #api_lfm_current_song1 {
-  overflow: hidden;
-  white-space: nowrap;
-  width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
 }
 
 .broadcastbar {
-  padding: 15px 0;
-  min-height: 70px;
-  background: #000a28;
-  color: white;
+    padding: 15px 0;
+    min-height: 70px;
+    background: #000a28;
+    color: white;
 }
 
 .player-button {
@@ -73,73 +80,75 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 @media (max-width: 786px) {
-	.player-button, .mutebtn {
-		width: 55px;
-		height: 55px;
-		font-size: 1.3em;
-	}
+    .player-button, .mutebtn {
+        width: 55px;
+        height: 55px;
+        font-size: 1.3em;
+    }
+
     .player-button {
         margin-right: 10px;
     }
-	a.social-link {
-	font-size: 1.3em;
-    width: 50px;
-    height: 50px;
-    padding: 10.75px 0;
-	box-shadow: none;
-	}
+
+    a.social-link {
+        font-size: 1.3em;
+        width: 50px;
+        height: 50px;
+        padding: 10.75px 0;
+        box-shadow: none;
+    }
 }
 
 .playbtn {
-  background: var(--main-color);
+    background: var(--main-color);
 }
 
-.station_info_container{
-	min-height: 100px;
+.station_info_container {
+    min-height: 100px;
 }
 
 .station_logo {
-	background: white;
-	border-radius: 2px;
+    background: white;
+    border-radius: 2px;
 }
 
 .current_show_container, .station_details_container {
-	background: white;
-	border-radius: 2px;
-	padding: 10px;
-	min-height: 100px;
+    background: white;
+    border-radius: 2px;
+    padding: 10px;
+    min-height: 100px;
 }
 
 .station_details_links {
-	vertical-align: bottom;
+    vertical-align: bottom;
 }
 
 #show_start:before {
-	content: "Seit: ";
+    content: "Seit: ";
 }
 
 #next_start:before {
-	content: "Ab: ";
+    content: "Ab: ";
 }
 
 #show_start:after, #next_start:after {
-	content: " Uhr";
+    content: " Uhr";
 }
 
 #station_displayname {
-	text-transform: uppercase;
+    text-transform: uppercase;
 }
 
-a.social-link{
-	font-size: 1.1em;
-	text-align: center;
-	text-decoration: none;
-	border-radius: 100%;
-	color: white !important;
-	flex: 1 0 50%;
+a.social-link {
+    font-size: 1.1em;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 100%;
+    color: white !important;
+    flex: 1 0 50%;
     justify-self: center;
-	-webkit-box-flex: 1;
-	display: inline-block;
+    -webkit-box-flex: 1;
+    display: inline-block;
     width: 40px;
     height: 40px;
     padding: 7.75px 0;
@@ -147,38 +156,39 @@ a.social-link{
     overflow: hidden;
     text-align: center;
     text-shadow: none;
-	box-shadow: none;
+    box-shadow: none;
     transition: all .2s ease-in-out;
 }
+
 a.social-link:hover {
-    opacity: 0.8 ;
-    box-shadow: 0 0 10px rgba(0,0,0,.5);
+    opacity: 0.8;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .5);
 }
 
 @media (max-width: 786px) {
-	a.social-link {
-	font-size: 1.4em;
-    width: 50px;
-    height: 50px;
-    padding: 9.75px 0;
-	box-shadow: none;
-	}
+    a.social-link {
+        font-size: 1.4em;
+        width: 50px;
+        height: 50px;
+        padding: 9.75px 0;
+        box-shadow: none;
+    }
 }
 
 
 .link-hp {
-  background: #666;
-  color: white;
+    background: #666;
+    color: white;
 }
 
 .link-fb {
-  background: #3B5998;
-  color: white;
+    background: #3B5998;
+    color: white;
 }
 
 .link-tw {
-  background: #55ACEE;
-  color: white;
+    background: #55ACEE;
+    color: white;
 }
 
 .link-lfm {
@@ -192,8 +202,8 @@ a.social-link:hover {
 }
 
 .link-ig {
-  background: radial-gradient(circle farthest-corner at 35% 90%,#fec564,transparent 50%),radial-gradient(circle farthest-corner at 0 140%,#fec564,transparent 50%),radial-gradient(ellipse farthest-corner at 0 -25%,#5258cf,transparent 50%),radial-gradient(ellipse farthest-corner at 20% -50%,#5258cf,transparent 50%),radial-gradient(ellipse farthest-corner at 100% 0,#893dc2,transparent 50%),radial-gradient(ellipse farthest-corner at 60% -20%,#893dc2,transparent 50%),radial-gradient(ellipse farthest-corner at 100% 100%,#d9317a,transparent),linear-gradient(#6559ca,#bc318f 30%,#e33f5f 50%,#f77638 70%,#fec66d 100%);;
-  color: white;
+    background: radial-gradient(circle farthest-corner at 35% 90%, #fec564, transparent 50%), radial-gradient(circle farthest-corner at 0 140%, #fec564, transparent 50%), radial-gradient(ellipse farthest-corner at 0 -25%, #5258cf, transparent 50%), radial-gradient(ellipse farthest-corner at 20% -50%, #5258cf, transparent 50%), radial-gradient(ellipse farthest-corner at 100% 0, #893dc2, transparent 50%), radial-gradient(ellipse farthest-corner at 60% -20%, #893dc2, transparent 50%), radial-gradient(ellipse farthest-corner at 100% 100%, #d9317a, transparent), linear-gradient(#6559ca, #bc318f 30%, #e33f5f 50%, #f77638 70%, #fec66d 100%);;
+    color: white;
 }
 
 .btn_external {
@@ -214,13 +224,16 @@ a.social-link:hover {
     left: 50%;
     width: 5em;
     height: 100%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     margin-left: 15px;
 }
 
 /* Audio */
 
-.audio { color: var(--main-color); margin-left: 15px;}
+.audio {
+    color: var(--main-color);
+    margin-left: 15px;
+}
 
 .audio::after,
 .audio i,
@@ -233,12 +246,14 @@ a.social-link:hover {
     display: block;
     width: 5px;
     height: 2px;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     background: currentColor;
     border-radius: 0.125em;
 }
 
-.audio::after { animation: audio4 1.5s infinite linear; }
+.audio::after {
+    animation: audio4 1.5s infinite linear;
+}
 
 .audio i::before {
     left: -0.8125em;
@@ -255,82 +270,173 @@ a.social-link:hover {
     animation: audio6 1.5s infinite linear;
 }
 
-.audio i:last-child::before { animation: audio5 1.5s infinite linear; }
+.audio i:last-child::before {
+    animation: audio5 1.5s infinite linear;
+}
 
-.audio i:last-child::after { animation: audio7 1.5s infinite linear; }
+.audio i:last-child::after {
+    animation: audio7 1.5s infinite linear;
+}
 
 @keyframes audio1 {
-    9% { height: 85%; }
-    36% { height: 0.5em; }
-    42% { height: 20%; }
-    69% { height: 0.5em; }
-    76% { height: 100%; }
-    100% { height: 85%; }
+    9% {
+        height: 85%;
+    }
+    36% {
+        height: 0.5em;
+    }
+    42% {
+        height: 20%;
+    }
+    69% {
+        height: 0.5em;
+    }
+    76% {
+        height: 100%;
+    }
+    100% {
+        height: 85%;
+    }
 }
 
 @keyframes audio2 {
-    9% { height: 100%; }
-    36% { height: 0.5em; }
-    42% { height: 85%; }
-    69% { height: 0.5em; }
-    76% { height: 100%; }
-    100% { height: 85%; }
+    9% {
+        height: 100%;
+    }
+    36% {
+        height: 0.5em;
+    }
+    42% {
+        height: 85%;
+    }
+    69% {
+        height: 0.5em;
+    }
+    76% {
+        height: 100%;
+    }
+    100% {
+        height: 85%;
+    }
 }
 
 @keyframes audio3 {
-    9% { height: 50%; }
-    36% { height: 0.5em; }
-    42% { height: 100%; }
-    69% { height: 0.5em; }
-    76% { height: 100%; }
-    100% { height: 65%; }
+    9% {
+        height: 50%;
+    }
+    36% {
+        height: 0.5em;
+    }
+    42% {
+        height: 100%;
+    }
+    69% {
+        height: 0.5em;
+    }
+    76% {
+        height: 100%;
+    }
+    100% {
+        height: 65%;
+    }
 }
 
 @keyframes audio4 {
-    9% { height: 20%; }
-    36% { height: 0.5em; }
-    42% { height: 90%; }
-    69% { height: 0.5em; }
-    76% { height: 100%; }
-    100% { height: 50%; }
+    9% {
+        height: 20%;
+    }
+    36% {
+        height: 0.5em;
+    }
+    42% {
+        height: 90%;
+    }
+    69% {
+        height: 0.5em;
+    }
+    76% {
+        height: 100%;
+    }
+    100% {
+        height: 50%;
+    }
 }
 
 @keyframes audio5 {
-    9% { height: 100%; }
-    36% { height: 0.5em; }
-    42% { height: 45%; }
-    69% { height: 0.5em; }
-    76% { height: 100%; }
-    100% { height: 75%; }
+    9% {
+        height: 100%;
+    }
+    36% {
+        height: 0.5em;
+    }
+    42% {
+        height: 45%;
+    }
+    69% {
+        height: 0.5em;
+    }
+    76% {
+        height: 100%;
+    }
+    100% {
+        height: 75%;
+    }
 }
 
 @keyframes audio6 {
-    9% { height: 100%; }
-    36% { height: 0.5em; }
-    42% { height: 50%; }
-    69% { height: 0.5em; }
-    76% { height: 100%; }
-    100% { height: 55%; }
+    9% {
+        height: 100%;
+    }
+    36% {
+        height: 0.5em;
+    }
+    42% {
+        height: 50%;
+    }
+    69% {
+        height: 0.5em;
+    }
+    76% {
+        height: 100%;
+    }
+    100% {
+        height: 55%;
+    }
 }
 
 @keyframes audio7 {
-    9% { height: 100%; }
-    36% { height: 0.5em; }
-    42% { height: 50%; }
-    69% { height: 0.5em; }
-    76% { height: 100%; }
-    100% { height: 75%; }
+    9% {
+        height: 100%;
+    }
+    36% {
+        height: 0.5em;
+    }
+    42% {
+        height: 50%;
+    }
+    69% {
+        height: 0.5em;
+    }
+    76% {
+        height: 100%;
+    }
+    100% {
+        height: 75%;
+    }
 }
 
 @media (max-width: 786px) {
-    .icon .audio i  {
+    .icon .audio i {
         display: none !important;
         visibility: hidden !important;
     }
+
     .icon {
-        display: none  !important;
-        visibility: hidden; !important;
+        display: none !important;
+        visibility: hidden;
+    !important;
     }
+
     .audio {
         display: none !important;
         visibility: hidden !important;

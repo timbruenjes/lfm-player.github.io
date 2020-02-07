@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+
+    <title>Pop-Up Player creation</title>
+
+    <link rel="stylesheet" href="assets/css/loader.min.css">
+    <link rel="stylesheet" href="assets/css/easy-autocomplete.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap-colorpicker.min.css">
+</head>
+<body class="d-flex flex-column justify-content-center bg-white">
+<div class="container">
+    <div class="row">
+        <div class="col-12 text-center">
+            <h1 class="display-2">Pop-Up laut.fm Player</h1>
+        </div>
+        <div class="col-12">
+            <div class="md-form">
+                <input type="text" id="station" class="form-control" required>
+                <label for="station">Station Name</label>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="md-form">
+                <i class="fas fa-palette prefix" id="color-icon"></i>
+                <input class="form-control" type="text" id="color" value="#1ed9b4">
+                <label for="color">Color</label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 mt-3">
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="badges" checked>
+                <label class="custom-control-label" for="badges">Show type badges</label>
+            </div>
+        </div>
+        <div class="col-lg-6 mt-3">
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="station_info" checked>
+                <label class="custom-control-label" for="station_info">Show station info (Logo, Social Media, description)</label>
+            </div>
+        </div>
+        <div class="col-lg-6 mt-3" id="current_pl_wrapper">
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="current_pl" checked>
+                <label class="custom-control-label" for="current_pl">Show current playlist</label>
+            </div>
+        </div>
+        <div class="col-lg-6 mt-3" id="next_pl_wrapper">
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="next_pl" checked>
+                <label class="custom-control-label" for="next_pl">Show next playlist</label>
+            </div>
+        </div>
+        <div class="col-lg-6 mt-3">
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="cover" aria-describedby="coverHelper">
+                <label class="custom-control-label" for="cover">Show cover instead of track numbers</label>
+                <small id="coverHelper" class="form-text text-muted">
+                    The rights of use are held by iTunes. The copyrights are held by the respective author.
+                </small>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="md-form input-group">
+                <input type="text" id="url" class="form-control" readonly>
+                <label for="url" class="active">Player URL</label>
+                <div class="input-group-append">
+                    <a id="url_href" href="#" class="input-group-text md-addon" target="_blank">
+                        <i class="fas fa-external-link-square-alt"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="assets/js/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="assets/js/mdb/mdb.js"></script>
+<script src="assets/js/fontawesome/all.min.js"></script>
+<script src="assets/js/jquery.easy-autocomplete.min.js"></script>
+<script src="assets/js/bootstrap-colorpicker.min.js"></script>
+<script type="text/javascript">
+    $.getJSON("https://api.laut.fm/stations", function (stations) {
+        var options = {
+            data: stations,
+            getValue: "name",
+            list: {
+                match: {
+                    enabled: true
+                },
+            }
+        };
+        $("#station").easyAutocomplete(options);
+    });
+</script>
+<script>
+    $(function () {
+        $('#color').colorpicker({
+            useHashPrefix: false,
+            format: 'hex'
+        });
+        $('#color-icon').css('color', "#1ed9b4");
+    });
+    $('#color').on('colorpickerChange', function (event) {
+        $('#color-icon').css('color', event.color.toString());
+    })
+
+
+    /* Live changed */
+    let color = "#1ed9b4";
+    $("#color").on('colorpickerChange', function (event) {
+        color = event.color.toString();
+    })
+    $(document).on("change paste keyup", "#station, #color, #badges, #station_info, #current_pl, #next_pl, #cover", function () {
+        let station = $("#station");
+        let infos = $("#station_info");
+        !$("label[for='url']").hasClass("active") && $("label[for='url']").addClass("active");
+
+
+        /* URL Creation */
+        let url = "https://timbruenjes.github.io/lfm-player.github.io/?station=" + station.val() + "&color=" + color.substr(1);
+        !station.val() ? station.addClass("is-invalid") : station.removeClass("is-invalid");
+        station.val() ? $('[for*="station"]').addClass("active") : $('[for*="station"]').removeClass("active");
+
+        if (infos.is(":checked")) {
+            $("#current_pl_wrapper").removeClass("d-none");
+            $("#next_pl_wrapper").removeClass("d-none");
+            !$("#current_pl").is(":checked") && (url += "&current_show=false");
+            !$("#next_pl").is(":checked") && (url += "&next_show=false");
+        } else {
+            $("#current_pl_wrapper").addClass("d-none");
+            $("#next_pl_wrapper").addClass("d-none");
+            url += "&station_info=false"
+        }
+        !$("#badges").is(":checked") && (url += "&badges=false");
+        $("#cover").is(":checked") && (url += "&cover=true");
+
+        $("#url").val(url);
+        $("#url_href").attr("href", url)
+    })
+</script>
+</body>
+</html>
