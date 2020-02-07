@@ -68,7 +68,7 @@ function crawlePlaylist(station_name) {
 
 function changeFavicon(apiData) {
     document.head || (document.head = document.getElementsByTagName('head')[0]);
-    var link = document.createElement('link'),
+    let link = document.createElement('link'),
         oldLink = document.getElementById('dynamic-favicon');
     link.id = 'dynamic-favicon';
     link.rel = 'shortcut icon';
@@ -81,7 +81,7 @@ function changeFavicon(apiData) {
 
 function createWebApp(apiData) {
     document.head || (document.head = document.getElementsByTagName('head')[0]);
-    var link1 = document.createElement('link'),
+    let link1 = document.createElement('link'),
         oldLink1 = document.getElementById('dynamic-webapp-1');
     link1.id = 'dynamic-webapp-1';
     link1.rel = 'icon';
@@ -94,7 +94,7 @@ function createWebApp(apiData) {
     document.head.appendChild(link1);
 
     document.head || (document.head = document.getElementsByTagName('head')[0]);
-    var link2 = document.createElement('link'),
+    let link2 = document.createElement('link'),
         oldLink2 = document.getElementById('dynamic-webapp-2');
     link2.id = 'dynamic-webapp-2';
     link2.rel = 'icon';
@@ -107,7 +107,7 @@ function createWebApp(apiData) {
     document.head.appendChild(link2);
 
     document.head || (document.head = document.getElementsByTagName('head')[0]);
-    var link3 = document.createElement('meta'),
+    let link3 = document.createElement('meta'),
         oldLink3 = document.getElementById('dynamic-webapp-3');
     link3.id = 'dynamic-webapp-3';
     link3.name = 'theme-color';
@@ -118,7 +118,7 @@ function createWebApp(apiData) {
     document.head.appendChild(link3);
 
     document.head || (document.head = document.getElementsByTagName('head')[0]);
-    var link4 = document.createElement('link'),
+    let link4 = document.createElement('link'),
         oldLink4 = document.getElementById('dynamic-webapp-4');
     link4.id = 'dynamic-webapp-4';
     link4.rel = 'apple-touch-icon';
@@ -130,7 +130,7 @@ function createWebApp(apiData) {
     document.head.appendChild(link4);
 
     document.head || (document.head = document.getElementsByTagName('head')[0]);
-    var link5 = document.createElement('meta'),
+    let link5 = document.createElement('meta'),
         oldLink5 = document.getElementById('dynamic-webapp-5');
     link5.id = 'dynamic-webapp-5';
     link5.name = 'msapplication-TileColor';
@@ -141,7 +141,7 @@ function createWebApp(apiData) {
     document.head.appendChild(link5);
 
     document.head || (document.head = document.getElementsByTagName('head')[0]);
-    var link6 = document.createElement('meta'),
+    let link6 = document.createElement('meta'),
         oldLink6 = document.getElementById('dynamic-webapp-6');
     link6.id = 'dynamic-webapp-6';
     link6.name = 'msapplication-TileImage';
@@ -152,7 +152,7 @@ function createWebApp(apiData) {
     document.head.appendChild(link6);
 
     document.head || (document.head = document.getElementsByTagName('head')[0]);
-    var link7 = document.createElement('link'),
+    let link7 = document.createElement('link'),
         oldLink7 = document.getElementById('dynamic-webapp-7');
     link7.id = 'dynamic-webapp-7';
     link7.rel = 'shortcut icon';
@@ -174,7 +174,7 @@ function getSong(station_name) {
 }
 
 function getWidth() {
-    let wrapper = $("#nowplaying").width()
+    let wrapper = $("#nowplaying").width();
     let playing = $("#api_lfm_display_name").width() + $("#nowplaying span").width();
     $("#api_lfm_current_song1").width(wrapper - playing);
 }
@@ -244,4 +244,4 @@ function updateMetadata() {
             });
         })
     })
-};
+}

@@ -8,7 +8,7 @@ function appendTemplate(append_selector, track_nr, artist, title, jingle = false
             .replace("{{title}}", title)
     );
     !cover ? void .0 : appended.find('[src*="{{cover}}"]').each(function () {
-        $(this).attr("src", cover)
+        $(this).attr("src", cover);
     });
     replaceInPopover(appended, {artist: artist, title: title, jingle: jingle});
 }
@@ -39,8 +39,7 @@ function replaceInPopover(DOMElement, data) {
 }
 
 function getItunesUrl(song, artist) {
-    let url = "https://itunes.apple.com/search?term=" + encodeURIComponent(artist) + "+" + encodeURIComponent(song) + "&entity=album&entity=musicArtist&entity=musicTrack&limit=1";
-    return url;
+    return "https://itunes.apple.com/search?term=" + encodeURIComponent(artist) + "+" + encodeURIComponent(song) + "&entity=album&entity=musicArtist&entity=musicTrack&limit=1";
 }
 
 function getImageUrl(url, width, height) {
@@ -95,6 +94,7 @@ function load_last_song(station_name) {
 
         }
     });
+
     $('[data-toggle="popover"]').popover({
         trigger: 'focus',
         html: true

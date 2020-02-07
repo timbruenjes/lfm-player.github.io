@@ -128,6 +128,7 @@
     /* =========================
      *  Other things
      * ========================= */
+
     /* Hide not wanted stuff from $_GET */
     !current_show   && $('#current_show').hide();
     !next_show      && $('#next_show').hide();
@@ -137,19 +138,11 @@
         $("#station_info").removeClass("col-md-5").addClass("col-md-9");
     }
 
-
-    /*
-     * TODO: Cleanup
-     */
     let root = document.documentElement;
-    root.style.setProperty('--main-color', '#' + color);
-
-    if (station == null) {
-        $("#api_lfm_current_song1").html("<b>No Station Name given</b>")
-    }
     let sender = station.toUpperCase();
-    let last_song_data_cache;
-    let song_str;
+    let last_song_data_cache, song_str;
+    root.style.setProperty('--main-color', '#' + color);
+    !station && $("#api_lfm_current_song1").html("<b>No Station Name given</b>");
 
     function cycle() {
         setTimeout(function () {
