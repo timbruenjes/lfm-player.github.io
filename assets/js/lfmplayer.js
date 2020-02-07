@@ -230,12 +230,16 @@ function updateMetadata() {
         navigator.mediaSession.metadata = new MediaMetadata({
             title: nptitle,
             artist: npartist,
-            album: sender,
-            // artwork: [
-                // {src: apiData.images.station, sizes: "80x80"},
-                // {src: apiData.images.station, sizes: "120x120"},
-                // {src: apiData.images.station, sizes: "640x640"}
-            //]
         });
+        $.getJSON("https://api.laut.fm/station/" + station , function (apiData) {
+            navigator.mediaSession.metadata = new MediaMetadata({
+                 album: apiData.display_name.toUpperCase(),
+                 artwork: [
+                 {src: apiData.images.station_80x80, sizes: "80x80"},
+                 {src: apiData.images.station_120x120, sizes: "120x120"},
+                 {src: apiData.images.station_640x640, sizes: "640x640"}
+                ]
+            });
+        })
     })
-}
+};
