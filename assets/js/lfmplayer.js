@@ -213,7 +213,7 @@ function audiobtn() {
     })
 }
 
-window.setInterval(CheckPlayerState, 2000);
+window.setInterval(CheckPlayerState, 5000);
 
 function CheckPlayerState() {
     let aud = $('audio')[0];
@@ -233,6 +233,8 @@ function updateMetadata() {
         });
         $.getJSON("https://api.laut.fm/station/" + station , function (apiData) {
             navigator.mediaSession.metadata = new MediaMetadata({
+                title: nptitle,
+                artist: npartist,
                  album: apiData.display_name.toUpperCase(),
                  artwork: [
                  {src: apiData.images.station_80x80, sizes: "80x80"},
