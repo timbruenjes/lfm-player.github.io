@@ -13,6 +13,14 @@ function $_GET(param) {
     return vars;
 }
 
+function handleApiError(_function) {
+    try{
+        _function;
+    } catch (e) {
+        console.error(e);
+    }
+}
+
 function setDisplayName(apiData) {
     $("#api_lfm_display_name").html(apiData.display_name);
 }
@@ -30,21 +38,21 @@ function setNextPlaylist(apiData) {
 }
 
 function setStationInformation(apiData) {
-    $("#station_logo").attr('src', apiData.images.station);
+    $("#station_logo").attr('src', apiData.images.station_640x640 || apiData.images.station_120x120);
     $("#station_displayname").html(apiData.display_name);
     $("#station_slogan").html(apiData.format);
     $("#station_description").html(apiData.description);
-    apiData.website ? $("#hp-link").attr('href', apiData.website) : $("#hp-link").hide();
-    apiData.page_url ? $("#lfm-link").attr('href', apiData.page_url) : $("#lfm-link").hide();
-    apiData.third_parties.rss ? $("#rss-link").attr('href', apiData.third_parties.rss.url) : $("#rss-link").hide();
-    apiData.facebook_page ? $("#fb-link").attr('href', apiData.facebook_page) : $("#fb-link").hide();
-    apiData.twitter_name ? $("#tw-link").attr('href', "https://twitter.com/" + apiData.twitter_name) : $("#tw-link").hide();
-    apiData.third_parties.instagram ? $("#ig-link").attr('href', "https://instagram.com/" + apiData.third_parties.instagram.name) : $("#ig-link").hide();
-    $("#radiode-link").attr('href', apiData.third_parties.radiode.url);
-    $("#phonostar-link").attr('href', apiData.third_parties.phonostar.url);
-    $("#tunein-link").attr('href', apiData.third_parties.tunein.url);
-    $("#m3u-link").attr('href', apiData.stream_url + ".m3u");
-    $("#pls-link").attr('href', apiData.stream_url + ".pls");
+    handleApiError(apiData.website ? $("#hp-link").attr('href', apiData.website) : $("#hp-link").hide());
+    handleApiError(apiData.page_url ? $("#lfm-link").attr('href', apiData.page_url) : $("#lfm-link").hide());
+    handleApiError(apiData.third_parties.rss ? $("#rss-link").attr('href', apiData.third_parties.rss.url) : $("#rss-link").hide());
+    handleApiError(apiData.facebook_page ? $("#fb-link").attr('href', apiData.facebook_page) : $("#fb-link").hide());
+    handleApiError(apiData.twitter_name ? $("#tw-link").attr('href', "https://twitter.com/" + apiData.twitter_name) : $("#tw-link").hide());
+    handleApiError(apiData.third_parties.instagram ? $("#ig-link").attr('href', "https://instagram.com/" + apiData.third_parties.instagram.name) : $("#ig-link").hide());
+    handleApiError(apiData.third_parties.radiode ? $("#radiode-link").attr('href', apiData.third_parties.radiode.url): $("#radiode-link").hide());
+    handleApiError(apiData.third_parties.phonostar ? $("#phonostar-link").attr('href', apiData.third_parties.phonostar.url) : $("#phonostar-link").hide());
+    handleApiError(apiData.third_parties.tunein ? $("#tunein-link").attr('href', apiData.third_parties.tunein.url) : $("#tunein-link").hide());
+    handleApiError($("#m3u-link").attr('href', apiData.stream_url + ".m3u"));
+    handleApiError($("#pls-link").attr('href', apiData.stream_url + ".pls"));
 }
 
 function crawleLautApi(station_name) {
