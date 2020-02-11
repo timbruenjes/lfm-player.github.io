@@ -14,19 +14,17 @@
 <nav class="broadcastbar fixed-top">
     <div class="container">
         <div class="row no-gutters">
-            <div class="col-md-2 d-flex d-md-block justify-content-center mb-2 mb-md-0">
+            <div class="col-md-3 col-lg-2 d-flex d-md-block justify-content-center mb-2 mb-md-0">
                 <button type="button" class="player-button playbtn btn-floating"><i class="fas play-pause fa-play"></i></button>
                 <button type="button" class="mute-button mutebtn btn-floating"><i class="fas mute-unmute fa-volume-up"></i></button>
                 <div class="icon audio hidden">
                     <i></i>
                 </div>
             </div>
-            <div class="col-md-10 d-flex align-items-center" id="nowplaying">
+            <div class="col-md-9 col-lg-10 d-flex align-items-center" id="nowplaying">
                 <div class="d-inline-block"><span id="api_lfm_display_name"></span>&nbsp;spielt:&nbsp;</div>
                 <div id="api_lfm_current_song1"></div>
             </div>
-
-
         </div>
     </div>
 </nav>
@@ -50,8 +48,8 @@
                     <a class="social-link link-rss" id="rss-link" target="_blank" rel="external nofollow noopener noreferrer"><i class="fas fa-rss"></i></a>
 				</div>
                 <div class="btn-group btn_external" role="group" aria-label="Playlist Links">
-                    <a class="external_listening btn btn-sm btn-grey" id="phonostar-link" rel="external nofollow noopener noreferrer">radio.de</a>
-                    <a class="external_listening btn btn-sm btn-grey" id="radiode-link" rel="external nofollow noopener noreferrer">phonostar</a>
+                    <a class="external_listening btn btn-sm btn-grey" id="radiode-link" rel="external nofollow noopener noreferrer">radio.de</a>
+                    <a class="external_listening btn btn-sm btn-grey" id="phonostar-link" rel="external nofollow noopener noreferrer">phonostar</a>
                     <a class="external_listening btn btn-sm btn-grey" id="tunein-link" rel="external nofollow noopener noreferrer">tunein</a>
                     <a class="external_listening btn btn-sm btn-grey" id="m3u-link" rel="external nofollow noopener noreferrer">M3U</a>
                     <a class="external_listening btn btn-sm btn-grey" id="pls-link" rel="external nofollow noopener noreferrer">PLS</a>
@@ -87,7 +85,7 @@
 
 <!-- Footer -->
 <footer class="page-footer font-small grey text-center">
-    <p style="color: black; padding-top: 15px; margin-bottom: 2px;">This Player is powered by:</p>
+    <p style="color: black; padding-top: 15px; margin-bottom: 2px;">This station is powered by:</p>
 <a href="https://laut.fm/" rel="external nofollow noopener noreferrer">
     <img src="assets/img/lautfm.svg" style="height: 40px; margin-bottom: 20px;" alt=""/>
 </a>
@@ -116,7 +114,9 @@
     let station_info    = $_GET('station_info')     || true;
     let current_show    = $_GET('current_show')     || true;
     let next_show       = $_GET('next_show')        || true;
+    let history         = $_GET('history')          || true;
     let cover           = $_GET('cover')            || false;
+
 
     /* $_GET vars checks and translation */
     (badges == 'true' || badges == 'false') ? badges = (badges == 'true') : badges = true;
@@ -124,6 +124,8 @@
     (next_show == 'true' || next_show == 'false') ? next_show = (next_show == 'true') : next_show = true;
     (station_info == 'true' || station_info == 'false') ? station_info = (station_info == 'true') : station_info = true;
     (cover == 'true' || cover == 'false') ? cover = (cover == 'true') : cover = false;
+    (history == 'true' || history == 'false') ? history = (history == 'true') : history = true;
+
 
     /* =========================
      *  Other things
@@ -133,6 +135,8 @@
     !current_show   && $('#current_show').hide();
     !next_show      && $('#next_show').hide();
     !station_info   && $(function () {$('#station').hide(); $('#last_songs').css("margin-top", "5rem")});
+    !history        && $('#last_songs').hide();
+
     if (!current_show && !next_show) {
         $("#playlist_wrapper").addClass("d-none");
         $("#station_info").removeClass("col-md-5").addClass("col-md-9");
@@ -146,7 +150,7 @@
 
     function cycle() {
         setTimeout(function () {
-            load_last_song(station);
+            history && load_last_song(station);
             $('[data-toggle="popover"]').popover({trigger: 'focus'});
             getSong(station);
             crawlePlaylist(station);
@@ -156,7 +160,7 @@
 
     $(document).ready(function () {
         audiobtn();
-        load_last_songs_fully(station);
+        history && load_last_songs_fully(station);
         crawleLautApi(station);
         getSong(station);
         getWidth();
