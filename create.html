@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!--suppress JSJQueryEfficiency -->
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -33,14 +34,14 @@
     <div class="row">
         <div class="col-lg-6 mt-3">
             <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="badges" checked>
-                <label class="custom-control-label" for="badges">Show type badges</label>
+                <input type="checkbox" class="custom-control-input" id="station_info" checked>
+                <label class="custom-control-label" for="station_info">Show station info (Logo, Social Media, description)</label>
             </div>
         </div>
         <div class="col-lg-6 mt-3">
             <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="station_info" checked>
-                <label class="custom-control-label" for="station_info">Show station info (Logo, Social Media, description)</label>
+                <input type="checkbox" class="custom-control-input" id="history" checked>
+                <label class="custom-control-label" for="history">Show track history</label>
             </div>
         </div>
         <div class="col-lg-6 mt-3" id="current_pl_wrapper">
@@ -55,7 +56,13 @@
                 <label class="custom-control-label" for="next_pl">Show next playlist</label>
             </div>
         </div>
-        <div class="col-lg-6 mt-3">
+        <div class="col-lg-6 mt-3" id="badge_wrapper">
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="badges" checked>
+                <label class="custom-control-label" for="badges">Show type badges</label>
+            </div>
+        </div>
+        <div class="col-lg-6 mt-3" id="cover_wrapper">
             <div class="custom-control custom-checkbox">
                 <input type="checkbox" class="custom-control-input" id="cover" aria-describedby="coverHelper">
                 <label class="custom-control-label" for="cover">Show cover instead of track numbers</label>
@@ -111,17 +118,18 @@
     });
     $('#color').on('colorpickerChange', function (event) {
         $('#color-icon').css('color', event.color.toString());
-    })
+    });
 
 
     /* Live changed */
     let color = "#1ed9b4";
     $("#color").on('colorpickerChange', function (event) {
         color = event.color.toString();
-    })
-    $(document).on("change paste keyup", "#station, #color, #badges, #station_info, #current_pl, #next_pl, #cover", function () {
-        let station = $("#station");
-        let infos = $("#station_info");
+    });
+    $(document).on("change paste keyup", "#station, #color, #badges, #station_info, #current_pl, #next_pl, #cover, #history", function () {
+        let station = $("#station"),
+            infos = $("#station_info"),
+            history = $("#history");
         !$("label[for='url']").hasClass("active") && $("label[for='url']").addClass("active");
 
 
@@ -140,8 +148,17 @@
             $("#next_pl_wrapper").addClass("d-none");
             url += "&station_info=false"
         }
-        !$("#badges").is(":checked") && (url += "&badges=false");
-        $("#cover").is(":checked") && (url += "&cover=true");
+
+        if (history.is(":checked")) {
+            $("#cover_wrapper").removeClass("d-none");
+            $("#badge_wrapper").removeClass("d-none");
+            $("#cover").is(":checked") && (url += "&cover=true");
+            !$("#badges").is(":checked") && (url += "&badges=false");
+        } else {
+            $("#cover_wrapper").addClass("d-none");
+            $("#badge_wrapper").addClass("d-none");
+            !history.is(":checked") && (url += "&history=false");
+        }
 
         $("#url").val(url);
         $("#url_href").attr("href", url)

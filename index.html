@@ -71,7 +71,7 @@
 	</div>
 </div>
 
-<!-- Songhistory-->
+<!-- Song history -->
 <div class="container" id="last_songs">
     <div class="row">
         <div class="col-12 mt-5 mt-md-4">
@@ -106,25 +106,24 @@
     /* =========================
      *  $_GET vars and checks
      * ========================= */
-    let station         = $_GET('station');
-    let color           = $_GET('color')            || '1ed9b4';
+    let station         = $_GET('station'),
+        color           = $_GET('color')            || '1ed9b4';
 
     /* Boolean */
-    let badges          = $_GET('badges')           || true;
-    let station_info    = $_GET('station_info')     || true;
-    let current_show    = $_GET('current_show')     || true;
-    let next_show       = $_GET('next_show')        || true;
-    let history         = $_GET('history')          || true;
-    let cover           = $_GET('cover')            || false;
-
+    let badges          = $_GET('badges')           || true,
+        station_info    = $_GET('station_info')     || true,
+        current_show    = $_GET('current_show')     || true,
+        next_show       = $_GET('next_show')        || true,
+        history         = $_GET('history')          || true,
+        cover           = $_GET('cover')            || false;
 
     /* $_GET vars checks and translation */
-    (badges == 'true' || badges == 'false') ? badges = (badges == 'true') : badges = true;
-    (current_show == 'true' || current_show == 'false') ? current_show = (current_show == 'true') : current_show = true;
-    (next_show == 'true' || next_show == 'false') ? next_show = (next_show == 'true') : next_show = true;
-    (station_info == 'true' || station_info == 'false') ? station_info = (station_info == 'true') : station_info = true;
-    (cover == 'true' || cover == 'false') ? cover = (cover == 'true') : cover = false;
-    (history == 'true' || history == 'false') ? history = (history == 'true') : history = true;
+    (badges == 'true' || badges == 'false')             ? badges = (badges == 'true')               : badges = true;
+    (current_show == 'true' || current_show == 'false') ? current_show = (current_show == 'true')   : current_show = true;
+    (next_show == 'true' || next_show == 'false')       ? next_show = (next_show == 'true')         : next_show = true;
+    (station_info == 'true' || station_info == 'false') ? station_info = (station_info == 'true')   : station_info = true;
+    (history == 'true' || history == 'false')           ? history = (history == 'true')             : history = true;
+    (cover == 'true' || cover == 'false')               ? cover = (cover == 'true')                 : cover = false;
 
 
     /* =========================
@@ -142,9 +141,10 @@
         $("#station_info").removeClass("col-md-5").addClass("col-md-9");
     }
 
-    let root = document.documentElement;
-    let sender = station.toUpperCase();
-    let last_song_data_cache, song_str;
+    let root = document.documentElement,
+        sender = station.toUpperCase(),
+        last_song_data_cache,
+        song_str;
     root.style.setProperty('--main-color', '#' + color);
     !station && $("#api_lfm_current_song1").html("<b>No Station Name given</b>");
 
