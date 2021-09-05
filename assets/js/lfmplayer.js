@@ -42,15 +42,11 @@ function setStationInformation(apiData) {
     $("#station_displayname").html(apiData.display_name);
     $("#station_slogan").html(apiData.format);
     $("#station_description").html(apiData.description);
-    /* Handle new and old api. */
-    let website     = apiData.website       || apiData.third_parties.website.url;
-    let facebook    = apiData.facebook_page || apiData.third_parties.facebook.page;
-    let twitter     = apiData.twitter_name  || apiData.third_parties.twitter.name;
-    handleApiError(website ? $("#hp-link").attr('href', website) : $("#hp-link").hide());
+    handleApiError(apiData.third_parties.website ? $("#hp-link").attr('href', apiData.third_parties.website.url) : $("#hp-link").hide());
     handleApiError(apiData.page_url ? $("#lfm-link").attr('href', apiData.page_url) : $("#lfm-link").hide());
     handleApiError(apiData.third_parties.rss ? $("#rss-link").attr('href', apiData.third_parties.rss.url) : $("#rss-link").hide());
-    handleApiError(facebook ? $("#fb-link").attr('href', facebook) : $("#fb-link").hide());
-    handleApiError(twitter ? $("#tw-link").attr('href', "https://twitter.com/" + twitter) : $("#tw-link").hide());
+    handleApiError(apiData.third_parties.facebook ? $("#fb-link").attr('href', apiData.third_parties.facebook.page) : $("#fb-link").hide());
+    handleApiError(apiData.third_parties.twitter ? $("#tw-link").attr('href', "https://twitter.com/" + apiData.third_parties.twitter.name) : $("#tw-link").hide());
     handleApiError(apiData.third_parties.instagram ? $("#ig-link").attr('href', "https://instagram.com/" + apiData.third_parties.instagram.name) : $("#ig-link").hide());
     handleApiError(apiData.third_parties.radiode ? $("#radiode-link").attr('href', apiData.third_parties.radiode.url): $("#radiode-link").hide());
     handleApiError(apiData.third_parties.phonostar ? $("#phonostar-link").attr('href', apiData.third_parties.phonostar.url) : $("#phonostar-link").hide());
