@@ -187,10 +187,15 @@ function getWidth() {
     $("#api_lfm_current_song1").width(wrapper - playing);
 }
 
-function audiobtn() {
+function audiobtn(autoplay, station) {
     let aud = $('audio')[0];
     aud.src = 'https://stream.laut.fm/' + station;
     aud.title = sender + ' - LIVE';
+    if (autoplay) {
+        aud.play();
+        $('.play-pause').removeClass('fa-play').addClass('fa-stop');
+        $('.icon.audio').removeClass('hidden');
+    }
     $('.playbtn').on('click', function () {
         if (aud.paused) {
             aud.play();

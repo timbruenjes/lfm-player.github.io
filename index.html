@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="assets/css/loader.min.css">
 
     <!--WebApp Basics-->
-    <meta name = "apple-mobile-web-app-capable" content = "yes"/>
+    <meta name="apple-mobile-web-app-capable" content = "yes"/>
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
 </head>
 
@@ -115,7 +115,8 @@
         current_show    = $_GET('current_show')     || true,
         next_show       = $_GET('next_show')        || true,
         history         = $_GET('history')          || true,
-        cover           = $_GET('cover')            || false;
+        cover           = $_GET('cover')            || false,
+        autoplay        = $_GET('autoplay')         || false;
 
     /* $_GET vars checks and translation */
     (badges == 'true' || badges == 'false')             ? badges = (badges == 'true')               : badges = true;
@@ -124,6 +125,7 @@
     (station_info == 'true' || station_info == 'false') ? station_info = (station_info == 'true')   : station_info = true;
     (history == 'true' || history == 'false')           ? history = (history == 'true')             : history = true;
     (cover == 'true' || cover == 'false')               ? cover = (cover == 'true')                 : cover = false;
+    (autoplay == 'true' || autoplay == 'false')         ? autoplay = (autoplay == 'true')           : autoplay = false;
 
 
     /* =========================
@@ -159,7 +161,7 @@
     }
 
     $(document).ready(function () {
-        audiobtn();
+        audiobtn(autoplay, station);
         history && load_last_songs_fully(station);
         crawleLautApi(station);
         getSong(station);

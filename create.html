@@ -62,6 +62,16 @@
                 <label class="custom-control-label" for="badges">Show type badges</label>
             </div>
         </div>
+        <div class="col-0 col-lg-6"></div>
+        <div class="col-lg-6 mt-3" id="autoplay_wrapper">
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="autoplay">
+                <label class="custom-control-label" for="autoplay">Autoplay on startup</label>
+                <small id="autoplayHelper" class="form-text text-muted">
+                    On some browsers like Firefox, the browser itself blocks the autoplay of media.
+                </small>
+            </div>
+        </div>
         <div class="col-lg-6 mt-3" id="cover_wrapper">
             <div class="custom-control custom-checkbox">
                 <input type="checkbox" class="custom-control-input" id="cover" aria-describedby="coverHelper">
@@ -99,11 +109,6 @@
         var options = {
             data: stations,
             getValue: "name",
-            list: {
-                match: {
-                    enabled: true
-                },
-            }
         };
         $("#station").easyAutocomplete(options);
     });
@@ -126,7 +131,7 @@
     $("#color").on('colorpickerChange', function (event) {
         color = event.color.toString();
     });
-    $(document).on("change paste keyup", "#station, #color, #badges, #station_info, #current_pl, #next_pl, #cover, #history", function () {
+    $(document).on("change paste keyup", "#station, #color, #badges, #station_info, #current_pl, #next_pl, #cover, #history, #autoplay", function () {
         let station = $("#station"),
             infos = $("#station_info"),
             history = $("#history");
@@ -137,6 +142,7 @@
         let url = "https://timbruenjes.github.io/lfm-player.github.io/?station=" + station.val() + "&color=" + color.substr(1);
         !station.val() ? station.addClass("is-invalid") : station.removeClass("is-invalid");
         station.val() ? $('[for*="station"]').addClass("active") : $('[for*="station"]').removeClass("active");
+        $("#autoplay").is(":checked") && (url += "&autoplay=true");
 
         if (infos.is(":checked")) {
             $("#current_pl_wrapper").removeClass("d-none");
